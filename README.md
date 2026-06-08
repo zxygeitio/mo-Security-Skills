@@ -14,7 +14,7 @@
 <p align="center">
   <b>🔥 The most battle-tested offensive security skills library for AI agents 🔥</b><br>
   <i>40 production-grade skills · 15 security domains · Real SRC vulnerability hunting results</i><br>
-  <i>Forged from 50+ real-world engagements · MGM · Huazhu · T3 · 萤石 · 教育行业</i>
+  <i>Forged from 50+ real-world engagements across hotel · gaming · ride-hailing · IoT · education sectors</i>
 </p>
 
 ---
@@ -169,17 +169,17 @@ for skill in scan_skills():
   │   Verify     Alive Check  Version Lock    Chain Building  │
   │                                                            │
   │   ┌─────────────────────────────────────────────────┐      │
-  │   │  🎓 教育  │  🏨 华住  │  🎰 MGM  │  🚗 T3  │  🛒 SHEIN  │
+  │   │  🎓 教育  │  🏨 酒店  │  🎰 博彩  │  🚗 出行  │  🛒 电商  │
   │   └─────────────────────────────────────────────────┘      │
   └────────────────────────────────────────────────────────────┘
 ```
 
 | Skill | Target | Key Findings |
 |:------|:-------|:-------------|
-| 🎓 `education-src-blueprint` | 教育行业 | 金智CAS + Liferay + 统一认证攻击面 |
-| 🎰 `mgm-src-testing-patterns` | MGM美高梅 | FWI CMS + ADFS + CORS泄露 + API密钥 |
-| 💰 `qssrc-testing-patterns` | 轻松筹 | API未授权 + IDOR + Passport认证绕过 |
-| 👗 `shein-src-recon` | SHEIN | 子域名枚举 + GSRM WAF识别 |
+| 🎓 `education-src-blueprint` | 教育行业 | 统一身份认证 + Liferay + 统一认证攻击面 |
+| 🎰 `mgm-src-testing-patterns` | 某博彩集团 | CMS系统 + ADFS + CORS泄露 + API密钥 |
+| 💰 `qssrc-testing-patterns` | 某众筹平台 | API未授权 + IDOR + Passport认证绕过 |
+| 👗 `shein-src-recon` | 某跨境电商 | 子域名枚举 + WAF识别 |
 | 📖 `nisp-pentest-fusion` | 通用 | NISP知识体系 + SRC实战融合 |
 | 🏫 `edu-auto-scanner` | 教育批量 | 批量探测 + 指纹→漏洞映射 + JS分析 |
 
@@ -291,46 +291,46 @@ graph TD
 <table>
 <tr>
 <td align="center" width="25%">
-<img src="https://img.shields.io/badge/🎰_MGM-8_Findings-critical?style=for-the-badge" width="180"><br>
+<img src="https://img.shields.io/badge/🎰_某博彩集团-8_Findings-critical?style=for-the-badge" width="180"><br>
 <b>High</b><br>
 <sub>CORS泄露 + API数据<br>WAF绕过 + 企业代码缺陷</sub>
 </td>
 <td align="center" width="25%">
-<img src="https://img.shields.io/badge/🏨_华住-15_Vulns-critical?style=for-the-badge" width="180"><br>
-<b>Critical: 5H/7M/3L</b><br>
-<sub>AppSecret→学生数据<br>未授权+IDOR(296品牌)</sub>
+<img src="https://img.shields.io/badge/🏨_某酒店集团-15_Vulns-critical?style=for-the-badge" width="180"><br>
+<b>Critical: 5H / 7M / 3L</b><br>
+<sub>AppSecret→敏感数据<br>未授权+IDOR(多品牌)</sub>
 </td>
 <td align="center" width="25%">
-<img src="https://img.shields.io/badge/🚗_T3出行-6+_Vulns-orange?style=for-the-badge" width="180"><br>
+<img src="https://img.shields.io/badge/🚗_某出行平台-6+_Vulns-orange?style=for-the-badge" width="180"><br>
 <b>High</b><br>
 <sub>Kong OAuth双斜杠绕过<br>VIP API 120端点</sub>
 </td>
 <td align="center" width="25%">
-<img src="https://img.shields.io/badge/🎓_教育行业-20+_Vulns-orange?style=for-the-badge" width="180"><br>
+<img src="https://img.shields.io/badge/🎓_某教育集群-20+_Vulns-orange?style=for-the-badge" width="180"><br>
 <b>High</b><br>
 <sub>CAS Open Redirect<br>统一认证攻击面</sub>
 </td>
 </tr>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/📹_萤石-6_Reports-yellow?style=for-the-badge" width="180"><br>
+<img src="https://img.shields.io/badge/📹_某IoT厂商-6_Reports-yellow?style=for-the-badge" width="180"><br>
 <b>Medium</b><br>
 <sub>Config.js泄露<br>__NEXT_DATA__泄露</sub>
 </td>
 <td align="center">
-<img src="https://img.shields.io/badge/💰_轻松筹-Multiple-orange?style=for-the-badge" width="180"><br>
+<img src="https://img.shields.io/badge/💰_某众筹平台-Multiple-orange?style=for-the-badge" width="180"><br>
 <b>High</b><br>
 <sub>API未授权/IDOR<br>Passport认证绕过</sub>
 </td>
 <td align="center">
-<img src="https://img.shields.io/badge/🌐_华中师范-200+_Subs-blue?style=for-the-badge" width="180"><br>
+<img src="https://img.shields.io/badge/🌐_某综合性高校-200+_Subs-blue?style=for-the-badge" width="180"><br>
 <b>Medium</b><br>
 <sub>CORS修复验证<br>OA V9.0SP1</sub>
 </td>
 <td align="center">
-<img src="https://img.shields.io/badge/🏫_上体+农职-CAS_Chains-orange?style=for-the-badge" width="180"><br>
+<img src="https://img.shields.io/badge/🏫_某教育机构-CAS_Chains-orange?style=for-the-badge" width="180"><br>
 <b>High</b><br>
-<sub>金智CAS全线CORS<br>Open Redirect窃取Ticket</sub>
+<sub>统一认证全线CORS<br>Open Redirect窃取Ticket</sub>
 </td>
 </tr>
 </table>
