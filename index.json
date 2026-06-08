@@ -1,0 +1,432 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-06-08T00:00:00Z",
+  "repository": "https://github.com/zxygeitio/Hermes-Security-Skills",
+  "domain": "cybersecurity",
+  "total_skills": 40,
+  "skills": [
+    {
+      "name": "agent-execution-monitor",
+      "description": "Agent执行监控与Loop Guard — 防止无效循环、请求预算管理、工具调用审计。借鉴PentAGI v2.0的Execution Monitor机制。",
+      "domain": "cybersecurity",
+      "path": "skills/agent-execution-monitor"
+    },
+    {
+      "name": "agent-task-planner",
+      "description": "智能任务规划器 — 复杂渗透任务执行前自动分解为3-7步结构化计划，提升成功率。借鉴PentAGI的Intelligent Task Planning。",
+      "domain": "cybersecurity",
+      "path": "skills/agent-task-planner"
+    },
+    {
+      "name": "auto-recon-lowhanging",
+      "description": "自动化初始侦察与低垂果实采集 — 模块化服务探测 + SQLi盲注验证 + 协议枚举 + 隐写术提取 (ctf-katana逻辑)",
+      "domain": "cybersecurity",
+      "path": "skills/auto-recon-lowhanging",
+      "tags": [
+        "recon",
+        "automation",
+        "sqli",
+        "steganography",
+        "enumeration",
+        "ctf"
+      ]
+    },
+    {
+      "name": "burp-suite-setup",
+      "description": "Burp Suite proxy setup with HTTPS certificate configuration on Kali Linux. Covers proxy listener config, CA certificate extraction/installation, browser integration, and xdotool automation for headless environments.",
+      "domain": "cybersecurity",
+      "path": "skills/burp-suite-setup"
+    },
+    {
+      "name": "cicd-pipeline-poisoning",
+      "description": "CI/CD基础设施滥用与流水线投毒 — GitHub Actions/GitLab CI/Jenkins利用 + 自托管Runner滥用 + Secret转储",
+      "domain": "cybersecurity",
+      "path": "skills/cicd-pipeline-poisoning",
+      "tags": [
+        "cicd",
+        "devops",
+        "github-actions",
+        "pipeline",
+        "supply-chain",
+        "cloud"
+      ]
+    },
+    {
+      "name": "ctf-playbook",
+      "description": "CTF竞赛知识库与自动化工具集 — Web/Crypto/PWN/Misc/Reverse解题思路、payload速查、自动化脚本。比赛时快速调用，覆盖SQL注入/XSS/文件上传/隐写/密码破解等常见题型。",
+      "domain": "cybersecurity",
+      "path": "skills/ctf-playbook",
+      "tags": [
+        "ctf",
+        "web",
+        "crypto",
+        "pwn",
+        "misc",
+        "reverse",
+        "forensics",
+        "steganography",
+        "sql-injection",
+        "xss"
+      ]
+    },
+    {
+      "name": "edu-auto-scanner",
+      "description": "教育SRC全自动化扫描工具集 — 批量探测+指纹→漏洞映射+JS安全分析+workspace持久化",
+      "domain": "cybersecurity",
+      "path": "skills/edu-auto-scanner",
+      "tags": [
+        "src",
+        "edu",
+        "automation",
+        "scanner",
+        "fingerprint",
+        "recon"
+      ]
+    },
+    {
+      "name": "education-src-blueprint",
+      "description": "教育SRC漏洞挖掘蓝图 — 目标筛选→漏洞类型优先级→利用验证→报告质量门禁→提交决策树。详细历史案例已拆到 references。",
+      "domain": "cybersecurity",
+      "path": "skills/education-src-blueprint",
+      "tags": [
+        "education",
+        "src",
+        "butian",
+        "cas",
+        "ehall",
+        "wisedu",
+        "lyuap",
+        "report-gate"
+      ]
+    },
+    {
+      "name": "exploit-chain",
+      "description": "端到端攻击链 — 从漏洞发现到RCE到数据提取的完整利用流程，覆盖SQL注入/文件上传/SSRF/反序列化/认证绕过/API滥用",
+      "domain": "cybersecurity",
+      "path": "skills/exploit-chain",
+      "tags": [
+        "exploit",
+        "rce",
+        "chain",
+        "offensive",
+        "post-exploitation"
+      ]
+    },
+    {
+      "name": "exploit-db-integration",
+      "description": "Exploit-DB 深度集成 — 本地47K+漏洞库引擎、指纹→exploit自动映射、searchsploit高级用法、nmap/nuclei/httpx联动、攻击脚本生成",
+      "domain": "cybersecurity",
+      "path": "skills/exploit-db-integration",
+      "tags": [
+        "exploit-db",
+        "searchsploit",
+        "exploit",
+        "fingerprint",
+        "poc",
+        "rce"
+      ]
+    },
+    {
+      "name": "hexstrike-api-fallback",
+      "description": "HexStrike MCP bridge 不稳定时的 HTTP API fallback 调用方案",
+      "domain": "cybersecurity",
+      "path": "skills/hexstrike-api-fallback"
+    },
+    {
+      "name": "hexstrike-usage",
+      "description": "How Hermes should use HexStrike — MCP tools first, HTTP API as fallback. Tool mapping, parameter conventions, and workflow integration.",
+      "domain": "cybersecurity",
+      "path": "skills/hexstrike-usage"
+    },
+    {
+      "name": "lianyi-cas-exploitation-patterns",
+      "description": "联奕科技(Lianyi) CAS统一身份认证平台渗透测试模式 — lyuapServer/ly_web_casconsole指纹识别+攻击面枚举+Open Redirect+管理后台暴露+源码信息泄露+QR码登录劫持",
+      "domain": "cybersecurity",
+      "path": "skills/lianyi-cas-exploitation-patterns",
+      "tags": [
+        "cas",
+        "lianyi",
+        "lyuapserver",
+        "education",
+        "src",
+        "authentication",
+        "sso"
+      ]
+    },
+    {
+      "name": "local-pentest-practice-lab",
+      "description": "在本地Docker环境中搭建渗透测试靶场并完成漏洞利用的完整工作流",
+      "domain": "cybersecurity",
+      "path": "skills/local-pentest-practice-lab"
+    },
+    {
+      "name": "mgm-src-testing-patterns",
+      "description": "MGM美高梅SRC渗透测试模式 — Mlife会员系统(FWI CMS)/booking预订系统/ADFS统一认证/F5 BIG-IP。覆盖/view/*未授权数据访问/ASMX SOAP服务/API密钥提取/OAuth2 password grant。",
+      "domain": "cybersecurity",
+      "path": "skills/mgm-src-testing-patterns",
+      "tags": [
+        "src",
+        "mgm",
+        "mlife",
+        "fwicms",
+        "adfs",
+        "f5",
+        "booking",
+        "macau"
+      ]
+    },
+    {
+      "name": "nginx-cve-database",
+      "description": "Nginx CVE漏洞数据库 (2024-2026) - 包含最新漏洞详情、检测方法和修复建议",
+      "domain": "cybersecurity",
+      "path": "skills/nginx-cve-database",
+      "tags": [
+        "nginx",
+        "cve",
+        "vulnerability",
+        "web",
+        "server",
+        "http",
+        "proxy"
+      ]
+    },
+    {
+      "name": "nginx-spa-fallback-false-positive",
+      "description": "Detect nginx SPA fallback causing false positive vulnerability reports. Critical for Web pentest.",
+      "domain": "cybersecurity",
+      "path": "skills/nginx-spa-fallback-false-positive"
+    },
+    {
+      "name": "nisp-pentest-fusion",
+      "description": "NISP知识体系与SRC实战融合 — 将一级/二级/三级的标准化知识与真实漏洞挖掘经验结合，形成可复用的攻击链模式库。",
+      "domain": "cybersecurity",
+      "path": "skills/nisp-pentest-fusion",
+      "tags": [
+        "nisp",
+        "渗透测试",
+        "知识体系",
+        "攻击链",
+        "SRC实战"
+      ]
+    },
+    {
+      "name": "openvpn-split-tunnel",
+      "description": "Configure OpenVPN split tunnel to access target internal networks while preserving local internet/AI API access. Essential for pentest engagements where VPN would otherwise redirect all traffic.",
+      "domain": "cybersecurity",
+      "path": "skills/openvpn-split-tunnel"
+    },
+    {
+      "name": "pentagi-cli-conversion",
+      "description": "将 PentAGI 项目改造为纯 CLI 工具的方法论 — 绕过 FlowWorker/DB/GraphQL/Docker 依赖，直接复用 Provider + Tools 核心",
+      "domain": "cybersecurity",
+      "path": "skills/pentagi-cli-conversion"
+    },
+    {
+      "name": "pentest-agent-build",
+      "description": "Lightweight CLI pentest agent — Go project at ~/pentest-agent, build notes, Anthropic SDK v1.38.0 and go-openai v1.41.2 API quirks discovered through trial and error.",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-agent-build"
+    },
+    {
+      "name": "pentest-control-plane",
+      "description": "渗透测试控制平面 - 统一调度所有渗透工具，自动化工作流",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-control-plane",
+      "tags": [
+        "pentest",
+        "automation",
+        "control-plane",
+        "workflow"
+      ]
+    },
+    {
+      "name": "pentest-lateral",
+      "description": "横向移动与内网渗透工具手册",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-lateral"
+    },
+    {
+      "name": "pentest-multiagent-system",
+      "description": "多智能体渗透测试工作流系统",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-multiagent-system"
+    },
+    {
+      "name": "pentest-ops",
+      "description": "渗透测试一体化作业流 — VPN接入 → 内网探测 → ROT识别 → 漏洞验证 → 报告生成",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-ops"
+    },
+    {
+      "name": "pentest-recon-driven",
+      "description": "信息收集驱动渗透测试入口 — 被动侦察→指纹→API/JS 逆向→精准验证；大案例按需读取 references。",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-recon-driven",
+      "tags": [
+        "recon",
+        "pentest",
+        "src",
+        "api",
+        "js",
+        "intelligence"
+      ]
+    },
+    {
+      "name": "pentest-tool-mastery",
+      "description": "渗透测试工具精通手册 — 工具选型决策树、组合技、自动化模式、常见陷阱。覆盖nmap/sqlmap/nuclei/gobuster/ffuf/curl/openssl等20+工具。",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-tool-mastery",
+      "tags": [
+        "tools",
+        "nmap",
+        "sqlmap",
+        "nuclei",
+        "gobuster",
+        "ffuf",
+        "automation"
+      ]
+    },
+    {
+      "name": "pentest-unified-engine",
+      "description": "统一渗透引擎 v1.0 — 目标图谱+智能路由+PoC生成+报告管道一体化。解决工具孤岛、手动决策、报告手工组装三大瓶颈。",
+      "domain": "cybersecurity",
+      "path": "skills/pentest-unified-engine",
+      "tags": [
+        "pentest",
+        "automation",
+        "graph",
+        "router",
+        "poc",
+        "report",
+        "orchestrator"
+      ]
+    },
+    {
+      "name": "post-exploit-pwncat",
+      "description": "自动化后渗透与稳定控制 (pwncat架构) — Dumb Shell→稳定PTY→提权枚举→持久化→痕迹擦除",
+      "domain": "cybersecurity",
+      "path": "skills/post-exploit-pwncat",
+      "tags": [
+        "post-exploit",
+        "c2",
+        "persistence",
+        "privesc",
+        "pty"
+      ]
+    },
+    {
+      "name": "qssrc-testing-patterns",
+      "description": "轻松筹QSSRC SRC渗透测试模式 - API未授权/IDOR/Passport认证/Actuator/WAF绕过",
+      "domain": "cybersecurity",
+      "path": "skills/qssrc-testing-patterns",
+      "tags": [
+        "src",
+        "qssrc",
+        "healthcare",
+        "api",
+        "idor",
+        "passport"
+      ]
+    },
+    {
+      "name": "redteam-flag-mode",
+      "description": "授权红队攻防/CTF夺旗模式 — 范围约束、按需工具启动、Flag工作区、证据链、提交格式与降级策略",
+      "domain": "cybersecurity",
+      "path": "skills/redteam-flag-mode"
+    },
+    {
+      "name": "rot-proxy-behind-discovery",
+      "description": "通过证书O字段指纹识别ROT Proxy背后真实业务系统的渗透测试方法论",
+      "domain": "cybersecurity",
+      "path": "skills/rot-proxy-behind-discovery"
+    },
+    {
+      "name": "script-analysis-invisible-code",
+      "description": "高级脚本分析与隐形代码检测 — Python/JS/VBA逆向 + Unicode零宽字符混淆检测 (Glassworm)",
+      "domain": "cybersecurity",
+      "path": "skills/script-analysis-invisible-code",
+      "tags": [
+        "script-analysis",
+        "obfuscation",
+        "unicode",
+        "supply-chain",
+        "reverse-engineering"
+      ]
+    },
+    {
+      "name": "shein-src-recon",
+      "description": "SHEIN SRC 渗透测试标准化流程 - 子域名枚举 + 内网探测 + GSRM WAF识别",
+      "domain": "cybersecurity",
+      "path": "skills/shein-src-recon"
+    },
+    {
+      "name": "smart-vuln-detector",
+      "description": "智能漏洞检测框架 - 基于指纹的漏洞特征匹配、自动选择检测方式",
+      "domain": "cybersecurity",
+      "path": "skills/smart-vuln-detector"
+    },
+    {
+      "name": "spring-boot-actuator-httptrace-exploitation",
+      "description": "Penetration testing methodology for Spring Boot Actuator endpoints, focusing on httptrace as a goldmine for business intelligence",
+      "domain": "cybersecurity",
+      "path": "skills/spring-boot-actuator-httptrace-exploitation"
+    },
+    {
+      "name": "src-vuln-hunting",
+      "description": "SRC(Security Response Center)公益漏洞挖掘全流程入口 — 目标快筛、攻击假设、证据门禁、实质漏洞报告。详细历史案例和 payload 已拆到 references。",
+      "domain": "cybersecurity",
+      "path": "skills/src-vuln-hunting",
+      "tags": [
+        "src",
+        "butian",
+        "cors",
+        "idor",
+        "apisix",
+        "recon",
+        "vulnerability"
+      ]
+    },
+    {
+      "name": "vuln-intel-2025-2026",
+      "description": "2025-2026漏洞情报库 — 最新CVE PoC/攻击链/利用技术/GitHub资源。持续更新的实战漏洞知识库。",
+      "domain": "cybersecurity",
+      "path": "skills/vuln-intel-2025-2026",
+      "tags": [
+        "cve",
+        "poc",
+        "exploit",
+        "2025",
+        "2026",
+        "intelligence",
+        "github"
+      ]
+    },
+    {
+      "name": "vuln-intel",
+      "description": "漏洞情报聚合 — 实时CVE搜索、Exploit-DB集成、产品漏洞追踪、指纹→漏洞→利用自动映射",
+      "domain": "cybersecurity",
+      "path": "skills/vuln-intel",
+      "tags": [
+        "cve",
+        "exploit",
+        "intelligence",
+        "nvd",
+        "exploitdb"
+      ]
+    },
+    {
+      "name": "web-pentest-fast",
+      "description": "外网 Web 渗透快速流程入口 — 轻量决策树、低噪声加载；详细 payload/案例在 references 中按需读取。",
+      "domain": "cybersecurity",
+      "path": "skills/web-pentest-fast",
+      "tags": [
+        "web",
+        "pentest",
+        "src",
+        "fast",
+        "waf",
+        "api"
+      ]
+    }
+  ]
+}
