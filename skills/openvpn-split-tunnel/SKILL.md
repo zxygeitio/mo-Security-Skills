@@ -1,8 +1,19 @@
 ---
 name: openvpn-split-tunnel
-description: Configure OpenVPN split tunnel to access target internal networks while preserving local internet/AI API access. Essential for pentest engagements where VPN would otherwise redirect all traffic.
+description: >-
+  Configure OpenVPN split tunnel to access target internal networks while preserving local internet/AI API access. Essential for pentest engagements where VPN would otherwise redirect all traffic.
+domain: cybersecurity
+subdomain: network-security
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1133
+nist_csf:
+- PR.AC-01
 ---
-
 # OpenVPN Split Tunnel Configuration
 
 > **⚠️ TOP PRIORITY: NEVER break AI model connectivity.**

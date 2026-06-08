@@ -1,10 +1,21 @@
 ---
 name: redteam-flag-mode
-description: 授权红队攻防/CTF夺旗模式 — 范围约束、按需工具启动、Flag工作区、证据链、提交格式与降级策略
-category: penetration-testing-learning
-created_by: agent
+description: >-
+  授权红队攻防/CTF夺旗模式 — 范围约束、按需工具启动、Flag工作区、证据链、提交格式与降级策略
+domain: cybersecurity
+subdomain: red-teaming
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+- T1078
+- T1021
+nist_csf:
+- DE.CM-01
 ---
-
 # Red-Team Flag Mode / 红队夺旗模式
 
 ## 触发条件
@@ -37,32 +48,32 @@ created_by: agent
 配置与 runbook：
 
 ```bash
-/root/.hermes/redteam-flag-mode/config.yaml
-/root/.hermes/redteam-flag-mode/RUNBOOK.md
+/root/.the agent/redteam-flag-mode/config.yaml
+/root/.the agent/redteam-flag-mode/RUNBOOK.md
 ```
 
 初始化工作区：
 
 ```bash
-/root/.hermes/scripts/hermes-flag-mode.sh init --case CASE_NAME --target TARGET
+/root/.the agent/scripts/the agent-flag-mode.sh init --case CASE_NAME --target TARGET
 ```
 
 记录 flag：
 
 ```bash
-/root/.hermes/scripts/hermes-flag-mode.sh add-flag --case CASE_NAME --target TARGET --flag 'flag{...}' --note 'vuln/path summary'
+/root/.the agent/scripts/the agent-flag-mode.sh add-flag --case CASE_NAME --target TARGET --flag 'flag{...}' --note 'vuln/path summary'
 ```
 
 记录证据：
 
 ```bash
-/root/.hermes/scripts/hermes-flag-mode.sh add-evidence --case CASE_NAME --file /tmp/evidence.txt --note 'HTTP response proving flag access'
+/root/.the agent/scripts/the agent-flag-mode.sh add-evidence --case CASE_NAME --file /tmp/evidence.txt --note 'HTTP response proving flag access'
 ```
 
 查看 ledger：
 
 ```bash
-/root/.hermes/scripts/hermes-flag-mode.sh ledger --case CASE_NAME
+/root/.the agent/scripts/the agent-flag-mode.sh ledger --case CASE_NAME
 ```
 
 ## 作业流
@@ -80,17 +91,17 @@ created_by: agent
 按需启动，不等用户手动打开：
 
 ```bash
-/root/.hermes/scripts/hermes-ensure-tools.sh --gateway --hexstrike
-/root/.hermes/scripts/hermes-ensure-tools.sh --burp
+/root/.the agent/scripts/the agent-ensure-tools.sh --gateway --hexstrike
+/root/.the agent/scripts/the agent-ensure-tools.sh --burp
 ```
 
 漏洞情报按需查询：
 
 ```bash
-/root/.hermes/scripts/hermes-vuln-query.sh --refresh --keyword 'PRODUCT_OR_CVE' --days 30 --github-limit 10
+/root/.the agent/scripts/the agent-vuln-query.sh --refresh --keyword 'PRODUCT_OR_CVE' --days 30 --github-limit 10
 ```
 
-MCP 仅执行，Hermes 主控负责判断和复核。
+MCP 仅执行，the agent orchestrator负责判断和复核。
 
 ## Flag 优先级
 

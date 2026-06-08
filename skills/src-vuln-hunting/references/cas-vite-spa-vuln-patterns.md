@@ -38,7 +38,7 @@ Content-Type: application/json
 
 ## 实战案例
 - cuit.edu.cn (成都信息工程大学): ywtb.cuit.edu.cn, user.cuit.edu.cn, notice.cuit.edu.cn 共用同一套CAS系统
-- 自动化脚本: `/root/.hermes/scripts/auto-vuln-scan.py` 内置`cas_authserver`指纹
+- 自动化脚本: `~/.agent/scripts/auto-vuln-scan.py` 内置`cas_authserver`指纹
 
 ## 报告模板
 ```

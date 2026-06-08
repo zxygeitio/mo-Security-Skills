@@ -6,17 +6,17 @@ Use this checklist when the user asks to improve vulnerability hunting efficienc
 
 Check and optimize only what is needed for the current task:
 
-- Gateway/Burp/HexStrike readiness: `/root/.hermes/scripts/hermes-ensure-tools.sh --status`
+- Gateway/Burp/HexStrike readiness: `~/.agent/scripts/hermes-ensure-tools.sh --status`
 - Evidence/report roots:
   - `/tmp/vuln_reports`
   - `/tmp/src-workspaces`
-  - `/root/.hermes/src-control`
+  - `~/.agent/src-control`
 - Framework scripts:
-  - `/root/.hermes/scripts/src-workspace-init.py`
-  - `/root/.hermes/scripts/src-http-probe.py`
-  - `/root/.hermes/scripts/src-js-api-extract.py`
-  - `/root/.hermes/scripts/src-quality-gate.py`
-  - `/root/.hermes/scripts/src-report-format-gate.py`
+  - `~/.agent/scripts/src-workspace-init.py`
+  - `~/.agent/scripts/src-http-probe.py`
+  - `~/.agent/scripts/src-js-api-extract.py`
+  - `~/.agent/scripts/src-quality-gate.py`
+  - `~/.agent/scripts/src-report-format-gate.py`
 
 Do not persist transient missing-tool failures as permanent negative rules. Capture the fix or checklist instead.
 
@@ -33,7 +33,7 @@ Do not persist transient missing-tool failures as permanent negative rules. Capt
 ```bash
 export LC_ALL=C LANG=C
 TARGET='example.com'
-INIT_JSON=$(/usr/bin/python3 /root/.hermes/scripts/src-workspace-init.py "$TARGET" --scope 'authorized low-impact SRC verification')
+INIT_JSON=$(/usr/bin/python3 ~/.agent/scripts/src-workspace-init.py "$TARGET" --scope 'authorized low-impact SRC verification')
 WS=$(/usr/bin/python3 - <<'PY' "$INIT_JSON"
 import json,sys
 print(json.loads(sys.argv[1])['workspace'])
@@ -58,7 +58,7 @@ Then store assets, endpoints, probes, negative evidence, candidate reports, and 
 
 ## External keys that improve asset discovery
 
-If the user provides them, add to `/root/.hermes/.env` and never paste secrets into reports:
+If the user provides them, add to `~/.agent/.env` and never paste secrets into reports:
 
 - FOFA_KEY / FOFA_EMAIL
 - HUNTER_API_KEY

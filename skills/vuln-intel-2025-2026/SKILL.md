@@ -1,10 +1,26 @@
 ---
 name: vuln-intel-2025-2026
-description: "2025-2026漏洞情报库 — 最新CVE PoC/攻击链/利用技术/GitHub资源。持续更新的实战漏洞知识库。"
-tags: [cve, poc, exploit, 2025, 2026, intelligence, github]
-related_skills: [vuln-intel, exploit-db-integration, pentest-unified-engine, auto-poc-report]
+description: >-
+  2025-2026漏洞情报库 — 最新CVE PoC/攻击链/利用技术/GitHub资源。持续更新的实战漏洞知识库。
+domain: cybersecurity
+subdomain: threat-intelligence
+tags:
+- cve
+- poc
+- exploit
+- 2025
+- 2026
+- intelligence
+- github
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1588
+- T1592
+nist_csf:
+- ID.RA-01
 ---
-
 # 2025-2026 漏洞情报库
 
 ## 高价值CVE PoC (已验证可利用)

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document maps the Hermes Security Skills to the MITRE ATT&CK Framework, showing how each skill contributes to specific tactics and techniques.
+This document maps the mo-Security-Skills to the MITRE ATT&CK Framework, showing how each skill contributes to specific tactics and techniques.
 
 **Total Coverage**: 11 tactics, 45+ techniques across Enterprise ATT&CK v15.
 

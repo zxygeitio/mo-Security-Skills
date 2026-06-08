@@ -1,9 +1,30 @@
 ---
 name: ctf-playbook
-description: "CTF竞赛知识库与自动化工具集 — Web/Crypto/PWN/Misc/Reverse解题思路、payload速查、自动化脚本。比赛时快速调用，覆盖SQL注入/XSS/文件上传/隐写/密码破解等常见题型。"
-tags: [ctf, web, crypto, pwn, misc, reverse, forensics, steganography, sql-injection, xss]
+description: >-
+  CTF竞赛知识库与自动化工具集 — Web/Crypto/PWN/Misc/Reverse解题思路、payload速查、自动化脚本。比赛时快速调用，覆盖SQL注入/XSS/文件上传/隐写/密码破解等常见题型。
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- ctf
+- web
+- crypto
+- pwn
+- misc
+- reverse
+- forensics
+- steganography
+- sql-injection
+- xss
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+- T1059
+- T1078
+nist_csf:
+- ID.RA-01
 ---
-
 # CTF Playbook / CTF竞赛知识库
 
 ## 触发条件
@@ -967,7 +988,7 @@ def my_func():
 
 引擎架构和GUI开发的详细记录已归档:
 - `references/ctf-automation-engine/plugin-expansion-20260603.md` — 插件扩展记录 (16→29个,新增服务利用)
-- `references/ctf-automation-engine/gpt-hermes-diagnosis-20260603.md` — GPT协作诊断记录
+- `references/ctf-automation-engine/gpt-the agent-diagnosis-20260603.md` — GPT协作诊断记录
 - `references/ctf-automation-toolkit/engine-debug-log.md` — 引擎开发bug和修复记录
 - `references/ctf-automation-toolkit/gui-v4-redesign.md` — GUI v3→v4→v4.1重设计记录 (emoji教训/用户偏好)
 - `references/ctf-automation-toolkit/sas-ctf-2026-automation.md` — SAS CTF 2026自动化经验 (WAF绕过/游戏题/PDF泄露)

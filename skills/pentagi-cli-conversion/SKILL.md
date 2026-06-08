@@ -1,8 +1,19 @@
 ---
 name: pentagi-cli-conversion
-description: 将 PentAGI 项目改造为纯 CLI 工具的方法论 — 绕过 FlowWorker/DB/GraphQL/Docker 依赖，直接复用 Provider + Tools 核心
+description: >-
+  将 PentAGI 项目改造为纯 CLI 工具的方法论 — 绕过 FlowWorker/DB/GraphQL/Docker 依赖，直接复用 Provider + Tools 核心
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+nist_csf:
+- ID.RA-01
 ---
-
 # PentAGI CLI 化改造方法论
 
 ## 参考文件

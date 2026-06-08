@@ -1,13 +1,20 @@
 ---
 name: shein-src-recon
-description: SHEIN SRC 渗透测试标准化流程 - 子域名枚举 + 内网探测 + GSRM WAF识别
+description: >-
+  SHEIN SRC 渗透测试标准化流程 - 子域名枚举 + 内网探测 + GSRM WAF识别
+domain: cybersecurity
+subdomain: penetration-testing
 tags:
-  - penetration-testing
-  - src
-  - shein
-  - reconnaissance
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1595
+- T1046
+nist_csf:
+- ID.RA-01
 ---
-
 # SHEIN SRC 渗透测试 - 子域名枚举 + 内网探测
 
 ## 适用场景

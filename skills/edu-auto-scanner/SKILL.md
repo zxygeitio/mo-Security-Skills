@@ -1,11 +1,27 @@
 ---
 name: edu-auto-scanner
-description: "教育SRC全自动化扫描工具集 — 批量探测+指纹→漏洞映射+JS安全分析+workspace持久化"
-category: penetration-testing-learning
-tags: [src, edu, automation, scanner, fingerprint, recon]
-created_by: agent
+description: >-
+  教育SRC全自动化扫描工具集 — 批量探测+指纹→漏洞映射+JS安全分析+workspace持久化
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- src
+- edu
+- automation
+- scanner
+- fingerprint
+- recon
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1595
+- T1190
+- T1046
+nist_csf:
+- DE.CM-01
+- ID.RA-01
 ---
-
 # 教育SRC自动化扫描工具集
 
 ## 触发条件
@@ -15,7 +31,7 @@ created_by: agent
 
 ## 工具清单
 
-所有脚本位于 `/root/.hermes/scripts/`:
+所有脚本位于 `/root/.the agent/scripts/`:
 
 | 脚本 | 功能 | 用法 |
 |------|------|------|
@@ -29,33 +45,33 @@ created_by: agent
 
 ### 一键全自动
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn
+/usr/bin/python3 /root/.the agent/scripts/edu-full-scan.py target.edu.cn
 ```
 
 ### 分步执行(推荐，可人工干预)
 ```bash
 # 1. 初始化workspace
-/usr/bin/python3 /root/.hermes/scripts/src-workspace.py init target.edu.cn
+/usr/bin/python3 /root/.the agent/scripts/src-workspace.py init target.edu.cn
 
 # 2. 批量探测
-/usr/bin/python3 /root/.hermes/scripts/edu-batch-probe.py subs.txt --dns -f -o alive.txt
+/usr/bin/python3 /root/.the agent/scripts/edu-batch-probe.py subs.txt --dns -f -o alive.txt
 
 # 3. 提取URL
 awk '{print $3}' alive.txt | grep '://' > urls.txt
 
 # 4. 自动漏洞扫描
-/usr/bin/python3 /root/.hermes/scripts/auto-vuln-scan.py urls.txt --enum --workspace target.edu.cn
+/usr/bin/python3 /root/.the agent/scripts/auto-vuln-scan.py urls.txt --enum --workspace target.edu.cn
 
 # 5. JS安全分析(对SPA目标)
-/usr/bin/python3 /root/.hermes/scripts/js-secrets-scanner.py https://target/assets/index.js --url
+/usr/bin/python3 /root/.the agent/scripts/js-secrets-scanner.py https://target/assets/index.js --url
 
 # 6. 查看结果
-/usr/bin/python3 /root/.hermes/scripts/src-workspace.py status target.edu.cn
+/usr/bin/python3 /root/.the agent/scripts/src-workspace.py status target.edu.cn
 ```
 
 ### 断点续扫
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-workspace.py resume target.edu.cn
+/usr/bin/python3 /root/.the agent/scripts/src-workspace.py resume target.edu.cn
 ```
 
 ## 内置指纹库
@@ -171,7 +187,7 @@ auto-vuln-scan.py 内置以下产品指纹:
 
 ## 渗透测试框架 v2.0 (2026-06-02)
 
-完整框架位于 `/root/.hermes/scripts/pentest_*.py`:
+完整框架位于 `/root/.the agent/scripts/pentest_*.py`:
 
 | 模块 | 功能 |
 |------|------|
@@ -192,16 +208,16 @@ auto-vuln-scan.py 内置以下产品指纹:
 
 ```bash
 # 快速扫描
-/usr/bin/python3 /root/.hermes/scripts/pentest_framework.py target.edu.cn --scan-type fast
+/usr/bin/python3 /root/.the agent/scripts/pentest_framework.py target.edu.cn --scan-type fast
 
 # 端口扫描
 /usr/bin/python3 -c "from pentest_portscan import PortScanner; print(PortScanner().scan_host('target', [22,80,443,8080]))"
 
 # 参数发现
-/usr/bin/python3 /root/.hermes/scripts/pentest_param_discover.py https://target
+/usr/bin/python3 /root/.the agent/scripts/pentest_param_discover.py https://target
 
 # CVE同步
-/usr/bin/python3 /root/.hermes/scripts/pentest_cve_sync.py --sync --product "致远OA"
+/usr/bin/python3 /root/.the agent/scripts/pentest_cve_sync.py --sync --product "致远OA"
 ```
 
 ## GPT-5.5协作模式

@@ -1,8 +1,20 @@
 ---
 name: rot-proxy-behind-discovery
-description: 通过证书O字段指纹识别ROT Proxy背后真实业务系统的渗透测试方法论
+description: >-
+  通过证书O字段指纹识别ROT Proxy背后真实业务系统的渗透测试方法论
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1595
+- T1046
+nist_csf:
+- ID.RA-01
 ---
-
 # ROT Proxy背后真实业务系统识别
 
 ## 新增参考 (2026-05-16)

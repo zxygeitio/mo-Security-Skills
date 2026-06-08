@@ -1,9 +1,27 @@
 ---
 name: education-src-blueprint
-description: "教育SRC漏洞挖掘蓝图 — 目标筛选→漏洞类型优先级→利用验证→报告质量门禁→提交决策树。详细历史案例已拆到 references。"
-tags: [education, src, butian, cas, ehall, wisedu, lyuap, report-gate]
+description: >-
+  教育SRC漏洞挖掘蓝图 — 目标筛选→漏洞类型优先级→利用验证→报告质量门禁→提交决策树。详细历史案例已拆到 references。
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- education
+- src
+- butian
+- cas
+- ehall
+- wisedu
+- lyuap
+- report-gate
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+- T1078
+nist_csf:
+- ID.RA-01
 ---
-
 # 教育 SRC 蓝图轻量入口
 
 ## 适用场景
@@ -32,10 +50,10 @@ tags: [education, src, butian, cas, ehall, wisedu, lyuap, report-gate]
 ## 标准执行
 
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-fast-assess.py example.edu.cn --out /tmp/src_assess_example
-/usr/bin/python3 /root/.hermes/scripts/src-practical-next.py /tmp/src_assess_example --out /tmp/src_assess_example/next.md --json-out /tmp/src_assess_example/next.json
-/usr/bin/python3 /root/.hermes/scripts/src-http-probe.py /tmp/src_assess_example /tmp/src_assess_example/urls.txt --timeout 8 --control --dedupe
-/usr/bin/python3 /root/.hermes/scripts/src-quality-gate.py /tmp/src_assess_example/probe_results.tsv --out /tmp/src_assess_example/quality_gate.md --json-out /tmp/src_assess_example/quality_gate.json
+/usr/bin/python3 /root/.the agent/scripts/src-fast-assess.py example.edu.cn --out /tmp/src_assess_example
+/usr/bin/python3 /root/.the agent/scripts/src-practical-next.py /tmp/src_assess_example --out /tmp/src_assess_example/next.md --json-out /tmp/src_assess_example/next.json
+/usr/bin/python3 /root/.the agent/scripts/src-http-probe.py /tmp/src_assess_example /tmp/src_assess_example/urls.txt --timeout 8 --control --dedupe
+/usr/bin/python3 /root/.the agent/scripts/src-quality-gate.py /tmp/src_assess_example/probe_results.tsv --out /tmp/src_assess_example/quality_gate.md --json-out /tmp/src_assess_example/quality_gate.json
 ```
 
 说明：命令是模板，正式目标根据 `next.md` 选 5-20 个高价值 URL 建 `urls.txt`，不要全量盲打。

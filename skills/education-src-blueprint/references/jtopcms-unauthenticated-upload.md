@@ -82,7 +82,7 @@ A reusable screenshot/evidence collector is packaged at `scripts/jtopcms_upload_
 
 Usage:
 ```bash
-bash /root/.hermes/skills/penetration-testing-learning/education-src-blueprint/scripts/jtopcms_upload_verify.sh "https://TARGET" "/tmp/jtopcms_upload_evidence"
+bash ~/.agent/skills/penetration-testing-learning/education-src-blueprint/scripts/jtopcms_upload_verify.sh "https://TARGET" "/tmp/jtopcms_upload_evidence"
 ```
 
 It collects:

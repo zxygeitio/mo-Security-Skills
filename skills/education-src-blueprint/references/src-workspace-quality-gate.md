@@ -4,15 +4,15 @@ Use this workflow for continued SRC/pentest work where the user wants only verif
 
 ## Scripts
 
-- `/root/.hermes/scripts/src-workspace-init.py` — creates a resumable workspace and target profile.
-- `/root/.hermes/scripts/src-http-probe.py` — probes URL lists, saves headers/bodies by SHA1(url), appends normalized `probe_results.tsv`.
-- `/root/.hermes/scripts/src-quality-gate.py` — conservative heuristic gate that classifies probe results as `DO_NOT_SUBMIT` or `NEED_MORE_EVIDENCE`.
+- `~/.agent/scripts/src-workspace-init.py` — creates a resumable workspace and target profile.
+- `~/.agent/scripts/src-http-probe.py` — probes URL lists, saves headers/bodies by SHA1(url), appends normalized `probe_results.tsv`.
+- `~/.agent/scripts/src-quality-gate.py` — conservative heuristic gate that classifies probe results as `DO_NOT_SUBMIT` or `NEED_MORE_EVIDENCE`.
 
 ## Required usage
 
 ```bash
 export LC_ALL=C LANG=C
-INIT_JSON=$(/usr/bin/python3 /root/.hermes/scripts/src-workspace-init.py TARGET.edu.cn --scope 'public low-impact SRC verification')
+INIT_JSON=$(/usr/bin/python3 ~/.agent/scripts/src-workspace-init.py TARGET.edu.cn --scope 'public low-impact SRC verification')
 WS=$(/usr/bin/python3 - <<'PY' "$INIT_JSON"
 import json,sys
 print(json.loads(sys.argv[1])['workspace'])
@@ -32,8 +32,8 @@ EOF
 Probe and gate:
 
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-http-probe.py "$WS" "$WS/urls.txt" --timeout 10
-/usr/bin/python3 /root/.hermes/scripts/src-quality-gate.py "$WS/probe_results.tsv" --out "$WS/final_gate.md"
+/usr/bin/python3 ~/.agent/scripts/src-http-probe.py "$WS" "$WS/urls.txt" --timeout 10
+/usr/bin/python3 ~/.agent/scripts/src-quality-gate.py "$WS/probe_results.tsv" --out "$WS/final_gate.md"
 ```
 
 ## Extended helpers
@@ -41,7 +41,7 @@ Probe and gate:
 After probing URLs, parse saved HTML/JS bodies for API candidates and secret hints:
 
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-js-api-extract.py "$WS"
+/usr/bin/python3 ~/.agent/scripts/src-js-api-extract.py "$WS"
 ```
 
 This appends `$WS/endpoints.tsv` and writes `$WS/js_api_findings.json`. Treat extracted secrets/endpoints as candidates only; report only after proving exploit impact.
@@ -49,19 +49,19 @@ This appends `$WS/endpoints.tsv` and writes `$WS/js_api_findings.json`. Treat ex
 Merge durable target context for future sessions:
 
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-target-profile-merge.py "$WS" --target TARGET.edu.cn
+/usr/bin/python3 ~/.agent/scripts/src-target-profile-merge.py "$WS" --target TARGET.edu.cn
 ```
 
 Before final output, run report format gate:
 
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-report-format-gate.py "$WS/final_reports/report.txt"
+/usr/bin/python3 ~/.agent/scripts/src-report-format-gate.py "$WS/final_reports/report.txt"
 ```
 
 For MCP-vs-self-control decisions, snapshot local service state:
 
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/hermes-mcp-service-status.py --out "$WS/mcp_status.json"
+/usr/bin/python3 ~/.agent/scripts/hermes-mcp-service-status.py --out "$WS/mcp_status.json"
 ```
 
 ## Decision rules

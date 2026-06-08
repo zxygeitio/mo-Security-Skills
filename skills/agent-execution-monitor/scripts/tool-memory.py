@@ -4,12 +4,12 @@
 记录哪些工具对哪种指纹/目标类型成功过，提升后续渗透效率
 借鉴 PentAGI 的 Graphiti "successful_tools" 概念
 
-数据库: /root/.hermes/data/tool_success.db (SQLite)
+数据库: ~/.agent/data/tool_success.db (SQLite)
 """
 import json, os, sys, sqlite3
 from datetime import datetime, timezone
 
-DB_PATH = "/root/.hermes/data/tool_success.db"
+DB_PATH = "~/.agent/data/tool_success.db"
 
 def get_db():
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)

@@ -1,13 +1,19 @@
 ---
 name: nginx-spa-fallback-false-positive
-description: Detect nginx SPA fallback causing false positive vulnerability reports. Critical for Web pentest.
+description: >-
+  Detect nginx SPA fallback causing false positive vulnerability reports. Critical for Web pentest.
+domain: cybersecurity
+subdomain: web-application-security
 tags:
-  - penetration-testing
-  - web-security
-  - false-positive
-  - nginx
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+nist_csf:
+- DE.CM-01
 ---
-
 # Nginx SPA Fallback False Positive Detection
 
 ## Problem

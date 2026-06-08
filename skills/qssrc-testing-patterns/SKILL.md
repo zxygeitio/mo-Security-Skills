@@ -1,10 +1,27 @@
 ---
 name: qssrc-testing-patterns
-description: 轻松筹QSSRC SRC渗透测试模式 - API未授权/IDOR/Passport认证/Actuator/WAF绕过
-category: penetration-testing-learning
-tags: [src, qssrc, healthcare, api, idor, passport]
+description: >-
+  轻松筹QSSRC SRC渗透测试模式 - API未授权/IDOR/Passport认证/Actuator/WAF绕过
+domain: cybersecurity
+subdomain: api-security
+tags:
+- src
+- qssrc
+- healthcare
+- api
+- idor
+- passport
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+- T1078
+- T1552
+nist_csf:
+- DE.CM-01
+- ID.RA-01
 ---
-
 # QSSRC轻松筹SRC测试模式 (2026-05-12)
 
 ## 目标范围

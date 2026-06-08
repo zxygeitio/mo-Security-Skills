@@ -1,9 +1,27 @@
 ---
 name: cicd-pipeline-poisoning
-description: CI/CD基础设施滥用与流水线投毒 — GitHub Actions/GitLab CI/Jenkins利用 + 自托管Runner滥用 + Secret转储
-tags: [cicd, devops, github-actions, pipeline, supply-chain, cloud]
+description: >-
+  CI/CD基础设施滥用与流水线投毒 — GitHub Actions/GitLab CI/Jenkins利用 + 自托管Runner滥用 + Secret转储
+domain: cybersecurity
+subdomain: devsecops
+tags:
+- cicd
+- devops
+- github-actions
+- pipeline
+- supply-chain
+- cloud
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1195
+- T1505
+- T1552
+nist_csf:
+- PR.IP-01
+- DE.CM-01
 ---
-
 # CI/CD 基础设施滥用与流水线投毒
 
 ## 核心原理

@@ -2,7 +2,7 @@
 
 ## Why this exists
 
-The user corrected the earlier design: Hermes is not guaranteed to run 7×24, so daily CVE/POC cron jobs can create a false sense of freshness. Vulnerability intelligence should be queried when it matters: after a target fingerprint, product name, version, component, or CVE appears during SRC/pentest work.
+The user corrected the earlier design: the agent is not guaranteed to run 7×24, so daily CVE/POC cron jobs can create a false sense of freshness. Vulnerability intelligence should be queried when it matters: after a target fingerprint, product name, version, component, or CVE appears during SRC/pentest work.
 
 ## Current rule
 
@@ -11,15 +11,15 @@ Do not create long-running daily CVE/POC cron jobs by default. Treat local SQLit
 ## Primary command
 
 ```bash
-/root/.hermes/scripts/hermes-vuln-query.sh --refresh --keyword "<product-or-CVE>" --days 30 --github-limit 10
+~/.agent/scripts/vuln-query.sh --refresh --keyword "<product-or-CVE>" --days 30 --github-limit 10
 ```
 
 Useful variants:
 
 ```bash
-/root/.hermes/scripts/hermes-vuln-query.sh --local --limit 20 "nginx"
-/root/.hermes/scripts/hermes-vuln-query.sh --refresh --keyword "CVE-2021-44228" --github-limit 5
-/root/.hermes/scripts/hermes-vuln-query.sh --local --json "wordpress"
+~/.agent/scripts/vuln-query.sh --local --limit 20 "nginx"
+~/.agent/scripts/vuln-query.sh --refresh --keyword "CVE-2021-44228" --github-limit 5
+~/.agent/scripts/vuln-query.sh --local --json "wordpress"
 ```
 
 ## Workflow for future agents
@@ -33,8 +33,8 @@ Useful variants:
 
 ## Security and token handling
 
-`GITHUB_TOKEN` is stored in `/root/.hermes/.env`; scripts load it automatically and must not echo it. If GitHub search is rate-limited, skip or reduce `--github-limit`; do not treat rate-limit warnings as task failure.
+`GITHUB_TOKEN` is stored in `~/.agent/.env`; scripts load it automatically and must not echo it. If GitHub search is rate-limited, skip or reduce `--github-limit`; do not treat rate-limit warnings as task failure.
 
 ## Cron policy
 
-The former daily job `Daily CVE/POC Intelligence Update` was removed. Do not recreate it unless the user explicitly asks for a truly persistent monitoring mode and understands that Hermes/Gateway must be running for it to fire.
+The former daily job `Daily CVE/POC Intelligence Update` was removed. Do not recreate it unless the user explicitly asks for a truly persistent monitoring mode and understands that Hermes/the agent gateway must be running for it to fire.

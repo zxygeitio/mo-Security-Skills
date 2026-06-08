@@ -3,7 +3,7 @@
 ## 问题背景
 
 SRC效率瓶颈: 串行curl + 慢网络(CERNET/教育网) = 192子域探活300秒超时，40分钟完成一轮扫描。
-解决方案: 5个Python脚本部署在 `/root/.hermes/scripts/`，实现批量探测→指纹→漏洞→JS分析→状态持久化。
+解决方案: 5个Python脚本部署在 `~/.agent/scripts/`，实现批量探测→指纹→漏洞→JS分析→状态持久化。
 
 ## 脚本清单
 
@@ -21,10 +21,10 @@ SRC效率瓶颈: 串行curl + 慢网络(CERNET/教育网) = 192子域探活300�
 
 ```bash
 # 基本用法
-python3 /root/.hermes/scripts/edu-batch-probe.py subs.txt
+python3 ~/.agent/scripts/edu-batch-probe.py subs.txt
 
 # 完整参数
-python3 /root/.hermes/scripts/edu-batch-probe.py subs.txt \
+python3 ~/.agent/scripts/edu-batch-probe.py subs.txt \
   --dns              # DNS预过滤(2秒超时)
   -f                 # 指纹识别(Server/X-Powered-By/Cookie/产品)
   --batch 20         # 并发数
@@ -44,13 +44,13 @@ python3 /root/.hermes/scripts/edu-batch-probe.py subs.txt \
 
 ```bash
 # 单目标扫描
-python3 /root/.hermes/scripts/auto-vuln-scan.py https://target.edu.cn
+python3 ~/.agent/scripts/auto-vuln-scan.py https://target.edu.cn
 
 # 批量扫描+用户枚举
-python3 /root/.hermes/scripts/auto-vuln-scan.py alive.txt --enum -o vulns.json --json
+python3 ~/.agent/scripts/auto-vuln-scan.py alive.txt --enum -o vulns.json --json
 
 # 测试所有路径(包括低危)
-python3 /root/.hermes/scripts/auto-vuln-scan.py https://target.edu.cn --all
+python3 ~/.agent/scripts/auto-vuln-scan.py https://target.edu.cn --all
 ```
 
 内置指纹库(FINGERPRINT_DB):
@@ -71,16 +71,16 @@ python3 /root/.hermes/scripts/auto-vuln-scan.py https://target.edu.cn --all
 
 ```bash
 # 本地文件
-python3 /root/.hermes/scripts/js-secrets-scanner.py bundle.js
+python3 ~/.agent/scripts/js-secrets-scanner.py bundle.js
 
 # URL直接扫描
-python3 /root/.hermes/scripts/js-secrets-scanner.py https://target/assets/index.js --url
+python3 ~/.agent/scripts/js-secrets-scanner.py https://target/assets/index.js --url
 
 # 只显示中危及以上
-python3 /root/.hermes/scripts/js-secrets-scanner.py bundle.js --severity medium
+python3 ~/.agent/scripts/js-secrets-scanner.py bundle.js --severity medium
 
 # JSON输出
-python3 /root/.hermes/scripts/js-secrets-scanner.py bundle.js --json -o results.json
+python3 ~/.agent/scripts/js-secrets-scanner.py bundle.js --json -o results.json
 ```
 
 检测规则(25+):
@@ -102,15 +102,15 @@ python3 /root/.hermes/scripts/js-secrets-scanner.py bundle.js --json -o results.
 ### src-workspace.py
 
 ```bash
-python3 /root/.hermes/scripts/src-workspace.py init target.edu.cn
-python3 /root/.hermes/scripts/src-workspace.py status target.edu.cn
-python3 /root/.hermes/scripts/src-workspace.py resume target.edu.cn    # 续扫建议
-python3 /root/.hermes/scripts/src-workspace.py update target.edu.cn --phase vuln_scan
-python3 /root/.hermes/scripts/src-workspace.py add-vuln target.edu.cn --json '{"url":"...","severity":"medium","description":"..."}'
-python3 /root/.hermes/scripts/src-workspace.py mark-tested target.edu.cn /api/base/login
-python3 /root/.hermes/scripts/src-workspace.py add-note target.edu.cn "WAF blocking on port 8080"
-python3 /root/.hermes/scripts/src-workspace.py list                    # 列出所有工作区
-python3 /root/.hermes/scripts/src-workspace.py export target.edu.cn    # 导出完整报告
+python3 ~/.agent/scripts/src-workspace.py init target.edu.cn
+python3 ~/.agent/scripts/src-workspace.py status target.edu.cn
+python3 ~/.agent/scripts/src-workspace.py resume target.edu.cn    # 续扫建议
+python3 ~/.agent/scripts/src-workspace.py update target.edu.cn --phase vuln_scan
+python3 ~/.agent/scripts/src-workspace.py add-vuln target.edu.cn --json '{"url":"...","severity":"medium","description":"..."}'
+python3 ~/.agent/scripts/src-workspace.py mark-tested target.edu.cn /api/base/login
+python3 ~/.agent/scripts/src-workspace.py add-note target.edu.cn "WAF blocking on port 8080"
+python3 ~/.agent/scripts/src-workspace.py list                    # 列出所有工作区
+python3 ~/.agent/scripts/src-workspace.py export target.edu.cn    # 导出完整报告
 ```
 
 工作区目录: /tmp/vuln_reports/<domain>/
@@ -125,20 +125,20 @@ python3 /root/.hermes/scripts/src-workspace.py export target.edu.cn    # 导出�
 
 ```bash
 # 完整扫描
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn
 
 # 快速模式(跳过JS分析和深挖)
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn --fast
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn --fast
 
 # 断点续扫
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn --resume
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn --resume
 
 # 只执行特定阶段
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn --phase recon
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn --phase fingerprint
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn --phase vuln_scan
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn --phase js_scan
-python3 /root/.hermes/scripts/edu-full-scan.py target.edu.cn --phase report
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn --phase recon
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn --phase fingerprint
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn --phase vuln_scan
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn --phase js_scan
+python3 ~/.agent/scripts/edu-full-scan.py target.edu.cn --phase report
 ```
 
 ## 实战效果

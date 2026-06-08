@@ -1,92 +1,180 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:ff6b35,100:ff2d2d&height=220&section=header&text=Hermes%20Security%20Skills&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=AI-Native%20Offensive%20Security%20Skill%20Library&descSize=16&descAlignY=55&descAlign=50" width="100%">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:ff6b35,100:ff2d2d&height=220&section=header&text=mo-Security-Skills&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Universal%20Offensive%20Security%20Skills%20for%20AI%20Agents&descSize=16&descAlignY=55&descAlign=50" width="100%">
 </p>
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/🛡️_Skills-40-orange?style=for-the-badge&logo=shield&logoColor=white" alt="Skills"></a>
-  <a href="#"><img src="https://img.shields.io/badge/🎯_Domains-15-red?style=for-the-badge&logo=target&logoColor=white" alt="Domains"></a>
-  <a href="#"><img src="https://img.shields.io/badge/📁_Files-619-blue?style=for-the-badge&logo=files&logoColor=white" alt="Files"></a>
+  <a href="#"><img src="https://img.shields.io/badge/🎯_Subdomains-11-red?style=for-the-badge&logo=target&logoColor=white" alt="Subdomains"></a>
+  <a href="#"><img src="https://img.shields.io/badge/📁_Files-1300+-blue?style=for-the-badge&logo=files&logoColor=white" alt="Files"></a>
   <a href="#"><img src="https://img.shields.io/badge/⚔️_ATT%26CK-45+_Techniques-green?style=for-the-badge&logo=mitre&logoColor=white" alt="ATT&CK"></a>
+  <a href="https://agentskills.io"><img src="https://img.shields.io/badge/📐_Standard-agentskills.io-purple?style=for-the-badge" alt="agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/📜_License-Apache_2.0-purple?style=for-the-badge" alt="License"></a>
-  <a href="https://hermes-agent.nousresearch.com"><img src="https://img.shields.io/badge/🤖_Powered_By-Hermes_Agent-ff6b35?style=for-the-badge" alt="Hermes Agent"></a>
 </p>
 
 <p align="center">
-  <b>🔥 The most battle-tested offensive security skills library for AI agents 🔥</b><br>
-  <i>40 production-grade skills · 15 security domains · Real SRC vulnerability hunting results</i><br>
-  <i>Forged from 50+ real-world engagements across hotel · gaming · ride-hailing · IoT · education sectors</i>
+  <b>🔥 Battle-tested offensive security skills — works with ANY AI agent 🔥</b><br>
+  <i>40 production-grade skills · 11 security subdomains · agentskills.io standard</i><br>
+  <i>Compatible with Claude · GPT · Gemini · Llama · Hermes · LangChain · CrewAI · any agent</i>
 </p>
 
 ---
 
 <p align="center">
   <a href="#-quick-start">Quick Start</a> •
-  <a href="#-skill-universe">Skill Universe</a> •
+  <a href="#-agent-compatibility">Agent Compatibility</a> •
+  <a href="#-skill-universe">Skills</a> •
   <a href="#-attack-chain-map">Attack Chain</a> •
   <a href="#-real-world-results">Results</a> •
-  <a href="#-contributing">Contributing</a> •
-  <a href="#-license">License</a>
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-contributing">Contributing</a>
 </p>
 
 ---
 
-## 🎬 The Story
+## 🤖 Agent Compatibility
 
 ```
   ┌─────────────────────────────────────────────────────────────────────┐
+  │                    WORKS WITH EVERY AI AGENT                       │
   │                                                                     │
-  │   A junior pentester knows which Nuclei template catches a          │
-  │   Spring Boot Actuator exposure, how to chain CORS misconfig        │
-  │   with IDOR for account takeover, and when a CAS Open Redirect      │
-  │   becomes a ticket theft vector.                                    │
+  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐           │
+  │  │  Claude   │  │   GPT    │  │  Gemini  │  │  Llama   │           │
+  │  │  (Anthropic)  │  (OpenAI)  │  (Google)  │  │  (Meta)  │           │
+  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘           │
   │                                                                     │
-  │   Your AI agent doesn't — unless you give it these skills.          │
+  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐           │
+  │  │  Hermes  │  │LangChain │  │  CrewAI  │  │  AutoGPT │           │
+  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘           │
   │                                                                     │
+  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐           │
+  │  │ MetaGPT  │  │  Cursor  │  │ Windsurf │  │   Cline  │           │
+  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘           │
+  │                                                                     │
+  │  Any agent that reads YAML frontmatter + Markdown body              │
   └─────────────────────────────────────────────────────────────────────┘
 ```
 
-Unlike general-purpose security knowledge bases, this library is:
+**How it works:** Each skill is a self-contained Markdown file with YAML frontmatter. The frontmatter enables ~30 token fast scanning for skill discovery. The body contains step-by-step instructions with real commands. No framework-specific runtime, no SDK, no dependencies.
 
-| 🧠 AI-Native | ⚔️ Battle-Tested | 🌏 Bilingual | 🔗 Chain-Oriented |
-|:---:|:---:|:---:|:---:|
-| YAML frontmatter (~30 token scan) | Every skill from real SRC engagements | Chinese + English coverage | Skills compose into attack chains |
-| Built for [Hermes Agent](https://hermes-agent.nousresearch.com) | Not theoretical checklists | 50+ targets tested | recon → fingerprint → exploit → report |
+```yaml
+# YAML frontmatter — read by any agent for fast discovery
+---
+name: exploiting-sql-injection-with-sqlmap
+description: >-
+  Detect and exploit SQL injection using sqlmap for
+  authorized penetration tests and CTF challenges.
+domain: cybersecurity
+subdomain: web-application-security
+tags:
+- sqlmap
+- sqli
+- owasp
+- web-security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+- T1059.007
+nist_csf:
+- DE.CM-01
+- ID.RA-01
+---
+
+# Markdown body — self-contained playbook for any agent
+## When to Use
+- During authorized penetration testing
+- To validate SQLi findings from scanners
+...
+```
 
 ---
 
 ## ⚡ Quick Start
 
 ```bash
-# 🚀 Clone the skills
+# Clone
 git clone https://github.com/zxygeitio/mo-Security-Skills.git
 
-# 📦 Copy to Hermes Agent
-cp -r mo-Security-Skills/skills/* ~/.hermes/skills/penetration-testing-learning/
-
-# 🔍 Verify installation
-ls ~/.hermes/skills/penetration-testing-learning/ | wc -l
-# → 40 skills loaded!
+# Use with any agent — just point to the skills directory
+# Claude: attach SKILL.md as context
+# GPT: include in system prompt
+# LangChain: load as Document objects
+# Custom: parse YAML frontmatter for discovery, load body for execution
 ```
 
 <details>
-<summary>🐍 <b>Python API — Load skills programmatically</b></summary>
+<summary>🐍 <b>Python — Universal Skill Loader</b></summary>
 
 ```python
 import yaml, re, glob
 
-def scan_skills(path="skills/*/SKILL.md"):
-    """Scan all skills via YAML frontmatter (~30 tokens each)"""
+def discover_skills(path="skills/*/SKILL.md"):
+    """Fast discovery via YAML frontmatter (~30 tokens per skill)"""
     skills = []
     for f in glob.glob(path):
         with open(f) as fh:
-            m = re.match(r'^---\s*\n(.*?)\n---', fh.read(), re.DOTALL)
+            content = fh.read()
+            m = re.match(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
             if m:
-                skills.append(yaml.safe_load(m.group(1)))
+                meta = yaml.safe_load(m.group(1))
+                meta['_file'] = f
+                skills.append(meta)
     return skills
 
-# Fast discovery
-for skill in scan_skills():
-    print(f"  🎯 {skill['name']}: {skill['description'][:80]}")
+def load_skill(name, path="skills/*/SKILL.md"):
+    """Load full skill body by name"""
+    for f in glob.glob(path):
+        with open(f) as fh:
+            content = fh.read()
+            m = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
+            if m:
+                meta = yaml.safe_load(m.group(1))
+                if meta.get('name') == name:
+                    return {'meta': meta, 'body': content[m.end():]}
+    return None
+
+# Discover all skills
+for skill in discover_skills():
+    print(f"  [{skill.get('subdomain','?')}] {skill['name']}: {skill['description'][:70]}")
+
+# Load specific skill
+s = load_skill('exploit-chain')
+print(s['body'][:500])
+```
+
+</details>
+
+<details>
+<summary>🔗 <b>LangChain — Load as Documents</b></summary>
+
+```python
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+loader = DirectoryLoader("skills/", glob="**/SKILL.md", loader_cls=TextLoader)
+docs = loader.load()
+
+# Each doc is a skill — split or use as-is
+splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
+chunks = splitter.split_documents(docs)
+```
+
+</details>
+
+<details>
+<summary>🦙 <b>LlamaIndex — Build Skill Index</b></summary>
+
+```python
+from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
+
+documents = SimpleDirectoryReader("skills/", recursive=True).load_data()
+index = VectorStoreIndex.from_documents(documents)
+query_engine = index.as_query_engine()
+
+# Ask: "What skills help with SQL injection?"
+response = query_engine.query("SQL injection exploitation skills")
+print(response)
 ```
 
 </details>
@@ -111,16 +199,16 @@ for skill in scan_skills():
   └──────────────────────────────────────────────────────────────┘
 ```
 
-| Skill | What It Does | Stars |
-|:------|:-------------|:-----:|
-| 📡 `pentest-recon-driven` | 被动侦察→指纹→API/JS 逆向→精准验证 | ⭐⭐⭐⭐⭐ |
-| 🎣 `auto-recon-lowhanging` | 模块化服务探测 + SQLi盲注验证 + 协议枚举 | ⭐⭐⭐⭐ |
-| 🔎 `rot-proxy-behind-discovery` | 证书O字段指纹识别ROT Proxy背后真实系统 | ⭐⭐⭐⭐ |
-| 🌐 `openvpn-split-tunnel` | Split tunnel配置,保持本地+VPN双通 | ⭐⭐⭐ |
-| 🔧 `burp-suite-setup` | Burp Suite代理+HTTPS证书配置 | ⭐⭐⭐ |
-| ⚡ `hexstrike-usage` | HexStrike MCP工具优先,HTTP API fallback | ⭐⭐⭐⭐ |
-| 🔄 `hexstrike-api-fallback` | HexStrike bridge降级方案 | ⭐⭐ |
-| 🛠️ `pentagi-cli-conversion` | PentAGI → 纯CLI工具改造 | ⭐⭐⭐ |
+| Skill | What It Does | ATT&CK |
+|:------|:-------------|:------:|
+| 📡 `pentest-recon-driven` | 被动侦察→指纹→API/JS 逆向→精准验证 | T1595 T1592 T1590 |
+| 🎣 `auto-recon-lowhanging` | 模块化服务探测 + SQLi盲注验证 + 协议枚举 | T1595 T1046 T1190 |
+| 🔎 `rot-proxy-behind-discovery` | 证书O字段指纹识别ROT Proxy背后真实系统 | T1595 T1046 |
+| 🌐 `openvpn-split-tunnel` | Split tunnel配置,保持本地+VPN双通 | T1133 |
+| 🔧 `burp-suite-setup` | Burp Suite代理+HTTPS证书配置 | T1190 |
+| ⚡ `hexstrike-usage` | HexStrike工具优先,HTTP API fallback | T1046 T1190 |
+| 🔄 `hexstrike-api-fallback` | HexStrike bridge降级方案 | T1046 |
+| 🛠️ `pentagi-cli-conversion` | PentAGI → 纯CLI工具改造 | — |
 
 ### 🎯 Vulnerability Hunting & Exploitation
 
@@ -141,20 +229,20 @@ for skill in scan_skills():
   └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Skill | What It Does | Impact |
+| Skill | What It Does | ATT&CK |
 |:------|:-------------|:------:|
-| 💀 `exploit-chain` | 端到端攻击链: SQLi/上传/SSRF/反序列化/认证绕过 | 🔴 Critical |
-| 🎯 `src-vuln-hunting` | SRC漏洞挖掘全流程: 目标快筛→攻击假设→证据门禁 | 🔴 Critical |
-| ⚡ `web-pentest-fast` | 外网Web渗透快速流程: 轻量决策树、低噪声 | 🟠 High |
-| 🗄️ `exploit-db-integration` | 47K+漏洞库 + 指纹→exploit自动映射 | 🟠 High |
-| 🍃 `spring-boot-actuator-httptrace-exploitation` | Actuator httptrace敏感信息泄露 | 🟡 Medium |
-| 🔐 `lianyi-cas-exploitation-patterns` | 联奕CAS: Open Redirect→Ticket窃取→管理后台 | 🟠 High |
-| 📦 `nginx-cve-database` | Nginx CVE漏洞库 (2024-2026) | 🟡 Medium |
-| 🎭 `nginx-spa-fallback-false-positive` | SPA fallback误报检测 | 🟢 Low |
-| 👻 `script-analysis-invisible-code` | Unicode零宽字符+隐形代码检测 | 🟡 Medium |
-| 📊 `vuln-intel` | 漏洞情报: 实时CVE + 指纹→漏洞→利用映射 | 🟠 High |
-| 📚 `vuln-intel-2025-2026` | 2025-2026最新漏洞情报库 | 🟠 High |
-| 🧠 `smart-vuln-detector` | 智能漏洞检测: 基于指纹的特征匹配 | 🟠 High |
+| 💀 `exploit-chain` | 端到端攻击链: SQLi/上传/SSRF/反序列化/认证绕过 | T1190 T1059 T1078 |
+| 🎯 `src-vuln-hunting` | SRC漏洞挖掘全流程: 目标快筛→攻击假设→证据门禁 | T1190 T1078 T1552 |
+| ⚡ `web-pentest-fast` | 外网Web渗透快速流程: 轻量决策树、低噪声 | T1190 T1071 T1059 |
+| 🗄️ `exploit-db-integration` | 47K+漏洞库 + 指纹→exploit自动映射 | T1190 T1588 |
+| 🍃 `spring-boot-actuator-httptrace-exploitation` | Actuator httptrace敏感信息泄露 | T1190 T1213 |
+| 🔐 `lianyi-cas-exploitation-patterns` | 统一身份认证CAS: Open Redirect→Ticket窃取 | T1078 T1133 |
+| 📦 `nginx-cve-database` | Nginx CVE漏洞库 (2024-2026) | T1190 |
+| 🎭 `nginx-spa-fallback-false-positive` | SPA fallback误报检测 | T1190 |
+| 👻 `script-analysis-invisible-code` | Unicode零宽字符+隐形代码检测 | T1027 T1059 |
+| 📊 `vuln-intel` | 漏洞情报: 实时CVE + 指纹→漏洞→利用映射 | T1588 T1592 |
+| 📚 `vuln-intel-2025-2026` | 2025-2026最新漏洞情报库 | T1588 T1592 |
+| 🧠 `smart-vuln-detector` | 智能漏洞检测: 基于指纹的特征匹配 | T1190 T1595 |
 
 ### 🏢 SRC-Specific Playbooks
 
@@ -174,8 +262,8 @@ for skill in scan_skills():
   └────────────────────────────────────────────────────────────┘
 ```
 
-| Skill | Target | Key Findings |
-|:------|:-------|:-------------|
+| Skill | Industry | Key Findings |
+|:------|:---------|:-------------|
 | 🎓 `education-src-blueprint` | 教育行业 | 统一身份认证 + Liferay + 统一认证攻击面 |
 | 🎰 `mgm-src-testing-patterns` | 某博彩集团 | CMS系统 + ADFS + CORS泄露 + API密钥 |
 | 💰 `qssrc-testing-patterns` | 某众筹平台 | API未授权 + IDOR + Passport认证绕过 |
@@ -185,37 +273,37 @@ for skill in scan_skills():
 
 ### 🔗 Post-Exploitation & Lateral Movement
 
-| Skill | Stage | Description |
-|:------|:------|:------------|
-| 🕸️ `pentest-lateral` | Lateral Movement | 横向移动与内网渗透工具手册 |
-| 🐚 `post-exploit-pwncat` | Post-Exploitation | Dumb Shell→PTY→提权→持久化 |
-| 🔄 `pentest-ops` | Full Chain | VPN→内网→ROT→漏洞→报告 |
-| 🧰 `pentest-tool-mastery` | Tooling | 20+工具选型决策树 + 组合技 |
+| Skill | ATT&CK | Description |
+|:------|:------:|:------------|
+| 🕸️ `pentest-lateral` | T1021 T1550 | 横向移动与内网渗透工具手册 |
+| 🐚 `post-exploit-pwncat` | T1059 T1068 | Dumb Shell→PTY→提权→持久化 |
+| 🔄 `pentest-ops` | T1190 T1021 | VPN→内网→ROT→漏洞→报告 |
+| 🧰 `pentest-tool-mastery` | T1046 T1190 | 20+工具选型决策树 + 组合技 |
 
 ### 🤖 Agent & Automation
 
-| Skill | Purpose | Innovation |
-|:------|:--------|:-----------|
-| 🏗️ `pentest-unified-engine` | 统一渗透引擎 | 目标图谱+智能路由+PoC生成+报告管道 |
-| 👥 `pentest-multiagent-system` | 多智能体 | 并行渗透工作流系统 |
-| 📊 `agent-execution-monitor` | 监控 | Loop Guard + 请求预算 + 工具调用审计 |
-| 📋 `agent-task-planner` | 规划 | 复杂任务→3-7步结构化计划 |
-| 🎛️ `pentest-control-plane` | 控制面 | 统一调度所有渗透工具 |
-| 🤖 `pentest-agent-build` | Agent构建 | Go语言CLI渗透Agent |
+| Skill | Purpose | ATT&CK |
+|:------|:--------|:------:|
+| 🏗️ `pentest-unified-engine` | 统一渗透引擎: 目标图谱+智能路由+PoC+报告 | T1595 T1190 |
+| 👥 `pentest-multiagent-system` | 多智能体并行渗透工作流 | T1595 T1190 |
+| 📊 `agent-execution-monitor` | Loop Guard + 请求预算 + 工具调用审计 | T1059 |
+| 📋 `agent-task-planner` | 复杂任务→3-7步结构化计划 | T1595 |
+| 🎛️ `pentest-control-plane` | 统一调度所有渗透工具 | T1046 T1190 |
+| 🤖 `pentest-agent-build` | Go语言CLI渗透Agent | T1059 |
 
 ### 🏴 CTF & Red Team
 
-| Skill | Mode | Coverage |
-|:------|:-----|:---------|
-| 🏁 `ctf-playbook` | CTF | Web/Crypto/PWN/Misc/Reverse + payload速查 |
-| ⚔️ `redteam-flag-mode` | Red Team | 授权红队/CTF夺旗 + 证据链 + 提交格式 |
-| 🧪 `local-pentest-practice-lab` | Practice | Docker靶场搭建 + 漏洞利用工作流 |
+| Skill | Mode | ATT&CK |
+|:------|:-----|:------:|
+| 🏁 `ctf-playbook` | CTF | T1190 T1059 T1078 |
+| ⚔️ `redteam-flag-mode` | Red Team | T1190 T1078 T1021 |
+| 🧪 `local-pentest-practice-lab` | Practice | T1190 |
 
-### 🛡️ CI/CD Security
+### 🛡️ CI/CD & DevSecOps
 
-| Skill | Attack Surface |
-|:------|:---------------|
-| 🔧 `cicd-pipeline-poisoning` | GitHub Actions / GitLab CI / Jenkins + Runner滥用 + Secret转储 |
+| Skill | ATT&CK |
+|:------|:------:|
+| 🔧 `cicd-pipeline-poisoning` | T1195 T1505 T1552 |
 
 ---
 
@@ -337,38 +425,122 @@ graph TD
 
 ---
 
-## 🧬 Skill Anatomy
+## 🏗️ Architecture
 
-Every skill follows the [agentskills.io](https://agentskills.io) standard:
+```
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │                    UNIVERSAL SKILL ARCHITECTURE                      │
+  │                   (agentskills.io v2.0 Standard)                    │
+  │                                                                     │
+  │   ┌─────────────────────────────────────────────────────────────┐   │
+  │   │                    YAML FRONTMATTER                         │   │
+  │   │   name · description · domain · subdomain · tags · version  │   │
+  │   │   author · license · mitre_attack · nist_csf                │   │
+  │   │                                                             │   │
+  │   │   ┌─────────────────────────────────────────────────────┐   │   │
+  │   │   │         ~30 TOKEN FAST DISCOVERY                    │   │   │
+  │   │   │   Any agent scans frontmatter → matches skill       │   │   │
+  │   │   └─────────────────────────────────────────────────────┘   │   │
+  │   └─────────────────────────────────────────────────────────────┘   │
+  │                           │                                         │
+  │                           ▼                                         │
+  │   ┌─────────────────────────────────────────────────────────────┐   │
+  │   │                    MARKDOWN BODY                            │   │
+  │   │   ## When to Use    — Trigger conditions                   │   │
+  │   │   ## Prerequisites  — Tools, access, environment           │   │
+  │   │   ## Steps          — Numbered workflow with commands       │   │
+  │   │   ## Key Concepts   — Reference tables                    │   │
+  │   │   ## Expected Output — What agent should produce           │   │
+  │   └─────────────────────────────────────────────────────────────┘   │
+  │                           │                                         │
+  │                           ▼                                         │
+  │   ┌─────────────────────────────────────────────────────────────┐   │
+  │   │                    SUPPORTING FILES                        │   │
+  │   │   references/  — Standards, CVE refs, deep procedures     │   │
+  │   │   scripts/     — Working helper scripts                   │   │
+  │   │   assets/      — Templates, checklists                    │   │
+  │   │   LICENSE       — Apache 2.0                              │   │
+  │   └─────────────────────────────────────────────────────────────┘   │
+  └──────────────────────────────────────────────────────────────────────┘
+```
+
+### Subdomain Distribution
+
+```
+penetration-testing    ████████████████████░░  21 skills
+web-application-security ████░░░░░░░░░░░░░░░░   4 skills
+vulnerability-management ████░░░░░░░░░░░░░░░░   4 skills
+threat-intelligence    ██░░░░░░░░░░░░░░░░░░░░   2 skills
+soc-operations         ██░░░░░░░░░░░░░░░░░░░░   2 skills
+red-teaming            ██░░░░░░░░░░░░░░░░░░░░   2 skills
+api-security           █░░░░░░░░░░░░░░░░░░░░░   1 skill
+devsecops              █░░░░░░░░░░░░░░░░░░░░░   1 skill
+identity-access-mgmt   █░░░░░░░░░░░░░░░░░░░░░   1 skill
+malware-analysis       █░░░░░░░░░░░░░░░░░░░░░   1 skill
+network-security       █░░░░░░░░░░░░░░░░░░░░░   1 skill
+```
+
+---
+
+## 🧬 Skill Anatomy
 
 ```
 skills/exploit-chain/
 ├── SKILL.md              ← YAML frontmatter + Markdown playbook
-│   ├── name: exploit-chain           (kebab-case identifier)
-│   ├── description: ...              (concise capability summary)
-│   ├── category: ...                 (domain classification)
-│   └── tags: [exploit, rce, chain]   (fast discovery tags)
-│
 ├── references/           ← Deep technical references
-│   └── business-logic-chain-framework-20260602.md
-│
 ├── scripts/              ← Working helper scripts
-│   └── chain_builder.py
-│
-└── assets/               ← Templates & checklists
-    └── report_template.md
+├── assets/               ← Templates & checklists
+└── LICENSE               ← Apache 2.0
 ```
 
 <details>
-<summary>📄 <b>Sample SKILL.md frontmatter</b></summary>
+<summary>📄 <b>Full SKILL.md Example</b></summary>
 
 ```yaml
 ---
-name: exploit-chain
-description: 端到端攻击链 — 从漏洞发现到RCE到数据提取的完整利用流程，覆盖SQL注入/文件上传/SSRF/反序列化/认证绕过/API滥用
-category: penetration-testing-learning
-tags: [exploit, rce, chain, offensive, post-exploitation]
+name: exploiting-sql-injection-with-sqlmap
+description: >-
+  Detect and exploit SQL injection using sqlmap for
+  authorized penetration tests and CTF challenges.
+domain: cybersecurity
+subdomain: web-application-security
+tags:
+- sqlmap
+- sqli
+- owasp
+- web-security
+- penetration-testing
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+- T1059.007
+nist_csf:
+- DE.CM-01
+- ID.RA-01
 ---
+
+# SQL Injection Exploitation with sqlmap
+
+## When to Use
+- During authorized penetration testing engagements
+- To validate SQLi findings from scanners
+- For CTF challenges involving SQL injection
+
+## Prerequisites
+- Authorization: Written Rules of Engagement
+- Tools: sqlmap, Python 3.6+, Burp Suite
+- Access: Network connectivity to target
+
+## Steps
+1. Identify injection points...
+2. Run sqlmap basic detection...
+3. Enumerate database structure...
+...
+
+## Expected Output
+JSON report with findings, evidence, and MITRE ATT&CK mapping.
 ```
 
 </details>
@@ -381,19 +553,19 @@ tags: [exploit, rce, chain, offensive, post-exploitation]
 <table>
 <tr>
 <td align="center" width="20%">
-<img src="https://img.shields.io/badge/-40-ff6b35?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMyA3djEwbDkgNSA5LTVIN0wxMiAyeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" width="80"><br><b>Skills</b>
+<img src="https://img.shields.io/badge/-40-ff6b35?style=flat" width="80"><br><b>Skills</b>
 </td>
 <td align="center" width="20%">
-<img src="https://img.shields.io/badge/-15-ff2d2d?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" width="80"><br><b>Domains</b>
+<img src="https://img.shields.io/badge/-11-ff2d2d?style=flat" width="80"><br><b>Subdomains</b>
 </td>
 <td align="center" width="20%">
-<img src="https://img.shields.io/badge/-619-00d4aa?style=flat" width="80"><br><b>Files</b>
+<img src="https://img.shields.io/badge/-1300+-00d4aa?style=flat" width="80"><br><b>Files</b>
 </td>
 <td align="center" width="20%">
-<img src="https://img.shields.io/badge/-45+-5b86e5?style=flat" width="80"><br><b>ATT&CK Techniques</b>
+<img src="https://img.shields.io/badge/-45+-5b86e5?style=flat" width="80"><br><b>ATT&CK</b>
 </td>
 <td align="center" width="20%">
-<img src="https://img.shields.io/badge/-50+-9b59b6?style=flat" width="80"><br><b>Targets Tested</b>
+<img src="https://img.shields.io/badge/-50+-9b59b6?style=flat" width="80"><br><b>Targets</b>
 </td>
 </tr>
 </table>
@@ -401,10 +573,9 @@ tags: [exploit, rce, chain, offensive, post-exploitation]
 
 ---
 
-## 🛠️ Built With
+## 🛠️ Tools Covered
 
 <p align="center">
-<a href="https://hermes-agent.nousresearch.com"><img src="https://img.shields.io/badge/Hermes_Agent-🤖-ff6b35?style=for-the-badge&logo=robot&logoColor=white" alt="Hermes Agent"></a>
 <a href="https://nmap.org"><img src="https://img.shields.io/badge/Nmap-📡-4a90d9?style=for-the-badge" alt="Nmap"></a>
 <a href="https://nuclei.projectdiscovery.io"><img src="https://img.shields.io/badge/Nuclei-🎯-ff6b35?style=for-the-badge" alt="Nuclei"></a>
 <a href="https://portswigger.net/burp"><img src="https://img.shields.io/badge/Burp_Suite-🔧-ff4444?style=for-the-badge" alt="Burp Suite"></a>
@@ -412,11 +583,14 @@ tags: [exploit, rce, chain, offensive, post-exploitation]
 <a href="https://github.com/projectdiscovery/httpx"><img src="https://img.shields.io/badge/httpx-🌐-5b86e5?style=for-the-badge" alt="httpx"></a>
 <a href="https://exploit-db.com"><img src="https://img.shields.io/badge/Exploit--DB-💀-ff2d2d?style=for-the-badge" alt="Exploit-DB"></a>
 <a href="https://sploitus.com"><img src="https://img.shields.io/badge/Sploitus-🔎-9b59b6?style=for-the-badge" alt="Sploitus"></a>
+<a href="https://github.com"><img src="https://img.shields.io/badge/20+_More_Tools-🧰-666?style=for-the-badge" alt="More"></a>
 </p>
 
 ---
 
 ## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
 
 ```
   ┌──────────────────────────────────────────────┐
@@ -430,19 +604,6 @@ tags: [exploit, rce, chain, offensive, post-exploitation]
   │                                              │
   └──────────────────────────────────────────────┘
 ```
-
-### Naming Convention
-- ✅ `kebab-case`: `exploit-chain`, `spring-boot-actuator-httptrace-exploitation`
-- ✅ Target-specific: `<target>-src-testing-patterns`
-- ❌ No camelCase, no spaces
-
-### Quality Standards
-| ✅ Required | ❌ Forbidden |
-|:------------|:-------------|
-| Real-world testing evidence | Theoretical-only content |
-| Concrete commands & payloads | Untested CVE claims |
-| Pitfalls & false positive docs | Hardcoded credentials |
-| Verification steps | Generic "check OWASP" advice |
 
 ---
 
@@ -469,5 +630,5 @@ tags: [exploit, rce, chain, offensive, post-exploitation]
 </p>
 
 <p align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/zxygeitio">zxygeitio</a> using <a href="https://hermes-agent.nousresearch.com">Hermes Agent</a></sub>
+  <sub>Built with ❤️ by <a href="https://github.com/zxygeitio">zxygeitio</a> · Follows <a href="https://agentskills.io">agentskills.io</a> standard</sub>
 </p>

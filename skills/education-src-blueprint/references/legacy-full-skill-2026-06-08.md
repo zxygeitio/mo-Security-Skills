@@ -80,28 +80,28 @@ tags: [education, src, butian, quality-gate, blueprint]
 
 1. **假设生成手**：
    ```bash
-   /usr/bin/python3 /root/.hermes/scripts/src-hypothesis-builder.py TARGET --scope education --outdir /tmp/src_TARGET
+   /usr/bin/python3 ~/.agent/scripts/src-hypothesis-builder.py TARGET --scope education --outdir /tmp/src_TARGET
    ```
    生成教育角色模型（游客/学生/教师/管理员/供应商/考生）、核心对象（studentId/userId/fileId/resId/appId/orgId/tenantId/token）和 7 类假设目录。
 
 2. **JS/API 提取手**：
-   使用 `/root/.hermes/scripts/src-js-api-extract.py` 或浏览器运行态，重点提取：招生查询、教务/成绩、缴费/一卡通、办事大厅/OA、第二课堂、CAS/找回密码、文件上传下载、供应商注册、小程序/APP API。
+   使用 `~/.agent/scripts/src-js-api-extract.py` 或浏览器运行态，重点提取：招生查询、教务/成绩、缴费/一卡通、办事大厅/OA、第二课堂、CAS/找回密码、文件上传下载、供应商注册、小程序/APP API。
 
 3. **小批探测手**：
    每个假设目录只放 5-20 个高价值 URL 到 `urls.txt`，再执行：
    ```bash
-   /usr/bin/python3 /root/.hermes/scripts/src-http-probe.py HYPOTHESIS_DIR HYPOTHESIS_DIR/urls.txt --timeout 8
+   /usr/bin/python3 ~/.agent/scripts/src-http-probe.py HYPOTHESIS_DIR HYPOTHESIS_DIR/urls.txt --timeout 8
    ```
    产生 headers/bodies/probe_results.tsv；禁止重新回到无边界大脚本黑洞。
 
 4. **证据门禁手**：
    ```bash
-   /usr/bin/python3 /root/.hermes/scripts/src-evidence-gate.py HYPOTHESIS_DIR --out HYPOTHESIS_DIR/evidence_gate.md
+   /usr/bin/python3 ~/.agent/scripts/src-evidence-gate.py HYPOTHESIS_DIR --out HYPOTHESIS_DIR/evidence_gate.md
    ```
    只有 PASS 或 NEED_MORE 且能补齐证据时继续；REJECT 直接归档为负证据。
 
 5. **报告格式手**：
-   报告写完后必须跑 `/root/.hermes/scripts/src-report-format-gate.py` 或等价检查，确认字段、单行 curl、截图位置、实测命令和同根因合并。
+   报告写完后必须跑 `~/.agent/scripts/src-report-format-gate.py` 或等价检查，确认字段、单行 curl、截图位置、实测命令和同根因合并。
 
 ### 教育专项停止条件
 
@@ -351,13 +351,13 @@ curl -sk "https://TARGET/api/xxx" -D-
 
 **一键快筛脚本 (推荐):**
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-fast-assess.py <domain>
+/usr/bin/python3 ~/.agent/scripts/src-fast-assess.py <domain>
 # 60秒内输出: 子域名+存活服务+指纹识别+优先攻击面+推荐命令
 # 深度模式: src-fast-assess.py <domain> --deep (含nuclei扫描)
 ```
 
 **指纹→漏洞映射**: 见 `src-vuln-hunting` skill 的 `references/cms-vuln-fingerprint-map.md`
-**批量CORS测试**: `/usr/bin/python3 /root/.hermes/scripts/src-cors-batch-test.py <url>`
+**批量CORS测试**: `/usr/bin/python3 ~/.agent/scripts/src-cors-batch-test.py <url>`
 
 **手动预检 (备用):**
 

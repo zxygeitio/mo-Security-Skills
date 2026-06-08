@@ -11,7 +11,7 @@ Use this when the target is a school, education bureau, education SaaS, campus c
 Generate a target workspace and hypothesis directories:
 
 ```bash
-/usr/bin/python3 /root/.hermes/scripts/src-hypothesis-builder.py TARGET --scope education --outdir /tmp/src_TARGET
+/usr/bin/python3 ~/.agent/scripts/src-hypothesis-builder.py TARGET --scope education --outdir /tmp/src_TARGET
 ```
 
 Education role model:

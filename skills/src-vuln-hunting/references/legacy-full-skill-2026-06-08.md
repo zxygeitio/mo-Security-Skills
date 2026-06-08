@@ -173,15 +173,15 @@ API响应中常见泄露字段:
 
 后续 SRC 任务不只靠临场手写 curl，默认把以下本机脚本当作可调度执行手，按需组合：
 
-- `/root/.hermes/scripts/src-hypothesis-builder.py TARGET --scope <education|ai|hotel|iot|default> --outdir OUTDIR`：为目标生成 7 类人类渗透假设、角色/数据对象模型、每类证据目录、停止条件和 evidence gate 命令。用于把“继续挖”转成可并行的小任务。
-- `/root/.hermes/scripts/src-workspace-init.py`：初始化 SRC 工作区和基础结构。
-- `/root/.hermes/scripts/src-js-api-extract.py`：从页面/JS/chunk 中提取 API、baseURL、密钥线索和运行态入口。
-- `/root/.hermes/scripts/src-http-probe.py WORKSPACE urls.txt --timeout 8 --control --dedupe`：小批量低噪声探测，自动落盘 headers/bodies/probe_results.tsv，并用随机同源路径识别 SPA fallback/WAF/login/统一错误页等假阳性。
-- `/root/.hermes/scripts/src-practical-next.py <alive.txt|probe_results.tsv|src-fast-assess-outdir> --out next.md --json-out next.json`：把已有资产/探测结果按实战价值排序，优先 api/auth/cas/ehall/oa/pay/upload/admin/actuator/swagger，过滤静态/news/cdn 低价值面，并输出可复制单行 curl。
-- `/root/.hermes/scripts/src-evidence-gate.py CANDIDATE_DIR --out evidence_gate.md`：候选漏洞目录级证据门禁，输出 PASS/NEED_MORE/REJECT、缺口、审核员反驳清单。
-- `/root/.hermes/scripts/src-quality-gate.py probe_results.tsv --out quality_gate.md`：对批量探测 TSV 做启发式筛选，挑出需人工复核项。
-- `/root/.hermes/scripts/src-report-format-gate.py REPORT.txt`：报告字段/格式/单行 curl/截图位置检查。
-- `/root/.hermes/scripts/hermes-ensure-tools.sh --status|--burp|--hexstrike|--gateway`：需要抓包/扫描/MCP/Gateway 时自行检查和启动。
+- `~/.agent/scripts/src-hypothesis-builder.py TARGET --scope <education|ai|hotel|iot|default> --outdir OUTDIR`：为目标生成 7 类人类渗透假设、角色/数据对象模型、每类证据目录、停止条件和 evidence gate 命令。用于把“继续挖”转成可并行的小任务。
+- `~/.agent/scripts/src-workspace-init.py`：初始化 SRC 工作区和基础结构。
+- `~/.agent/scripts/src-js-api-extract.py`：从页面/JS/chunk 中提取 API、baseURL、密钥线索和运行态入口。
+- `~/.agent/scripts/src-http-probe.py WORKSPACE urls.txt --timeout 8 --control --dedupe`：小批量低噪声探测，自动落盘 headers/bodies/probe_results.tsv，并用随机同源路径识别 SPA fallback/WAF/login/统一错误页等假阳性。
+- `~/.agent/scripts/src-practical-next.py <alive.txt|probe_results.tsv|src-fast-assess-outdir> --out next.md --json-out next.json`：把已有资产/探测结果按实战价值排序，优先 api/auth/cas/ehall/oa/pay/upload/admin/actuator/swagger，过滤静态/news/cdn 低价值面，并输出可复制单行 curl。
+- `~/.agent/scripts/src-evidence-gate.py CANDIDATE_DIR --out evidence_gate.md`：候选漏洞目录级证据门禁，输出 PASS/NEED_MORE/REJECT、缺口、审核员反驳清单。
+- `~/.agent/scripts/src-quality-gate.py probe_results.tsv --out quality_gate.md`：对批量探测 TSV 做启发式筛选，挑出需人工复核项。
+- `~/.agent/scripts/src-report-format-gate.py REPORT.txt`：报告字段/格式/单行 curl/截图位置检查。
+- `~/.agent/scripts/hermes-ensure-tools.sh --status|--burp|--hexstrike|--gateway`：需要抓包/扫描/MCP/Gateway 时自行检查和启动。
 
 推荐编排：
 1. 目标进入后先跑 hypothesis-builder，生成 7 个假设目录。

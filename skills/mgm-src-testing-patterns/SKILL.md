@@ -1,11 +1,29 @@
 ---
 name: mgm-src-testing-patterns
-description: "MGM美高梅SRC渗透测试模式 — Mlife会员系统(FWI CMS)/booking预订系统/ADFS统一认证/F5 BIG-IP。覆盖/view/*未授权数据访问/ASMX SOAP服务/API密钥提取/OAuth2 password grant。"
-category: penetration-testing-learning
-tags: [src, mgm, mlife, fwicms, adfs, f5, booking, macau]
-created_by: agent
+description: >-
+  MGM美高梅SRC渗透测试模式 — Mlife会员系统(FWI CMS)/booking预订系统/ADFS统一认证/F5 BIG-IP。覆盖/view/*未授权数据访问/ASMX SOAP服务/API密钥提取/OAuth2 password grant。
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- src
+- mgm
+- mlife
+- fwicms
+- adfs
+- f5
+- booking
+- macau
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+- T1078
+- T1552
+nist_csf:
+- DE.CM-01
+- ID.RA-01
 ---
-
 # MGM SRC 测试模式 (mgm.mo / mlife.mo)
 
 ## 触发条件

@@ -1,10 +1,19 @@
 ---
 name: agent-execution-monitor
-description: "Agent执行监控与Loop Guard — 防止无效循环、请求预算管理、工具调用审计。借鉴PentAGI v2.0的Execution Monitor机制。"
-category: ai-development
-created_by: agent
+description: >-
+  Agent执行监控与Loop Guard — 防止无效循环、请求预算管理、工具调用审计。借鉴PentAGI v2.0的Execution Monitor机制。
+domain: cybersecurity
+subdomain: soc-operations
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1059
+nist_csf:
+- DE.AE-01
 ---
-
 # Agent Execution Monitor / Loop Guard
 
 ## 触发条件
@@ -24,7 +33,7 @@ created_by: agent
 - "结果无实质变化"判定：输出长度差 < 10% 且无新发现关键词
 
 **干预动作：**
-1. 记录循环原因到 `/tmp/hermes-exec-monitor.jsonl`
+1. 记录循环原因到 `/tmp/the agent-exec-monitor.jsonl`
 2. 输出诊断：哪些工具卡住了、为什么
 3. 建议替代策略（换工具/换角度/跳过/报告已有发现）
 4. 若用户设置了 `auto_mode=true`，自动切换到备选方案
@@ -91,7 +100,7 @@ created_by: agent
 
 ## 实现脚本
 
-本技能包含 3 个脚本（`scripts/` 目录），同时部署到 `/root/.hermes/scripts/`：
+本技能包含 3 个脚本（`scripts/` 目录），同时部署到 `/root/.the agent/scripts/`：
 
 | 脚本 | 功能 | 用法 |
 |------|------|------|
@@ -101,19 +110,19 @@ created_by: agent
 
 ```bash
 # 查看当前会话统计
-/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py stats
+/usr/bin/python3 /root/.the agent/scripts/agent-exec-monitor.py stats
 
 # 查看循环检测告警
-/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py alerts
+/usr/bin/python3 /root/.the agent/scripts/agent-exec-monitor.py alerts
 
 # 重置计数器
-/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py reset
+/usr/bin/python3 /root/.the agent/scripts/agent-exec-monitor.py reset
 
 # 查看因果图
-/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py graph
+/usr/bin/python3 /root/.the agent/scripts/agent-exec-monitor.py graph
 ```
 
-## 与 Hermes 集成
+## 与 the AI agent 集成
 
 在 `global-control` 技能的 SRC/渗透任务流程中自动加载本技能。
 

@@ -1,8 +1,19 @@
 ---
 name: burp-suite-setup
-description: Burp Suite proxy setup with HTTPS certificate configuration on Kali Linux. Covers proxy listener config, CA certificate extraction/installation, browser integration, and xdotool automation for headless environments.
+description: >-
+  Burp Suite proxy setup with HTTPS certificate configuration on Kali Linux. Covers proxy listener config, CA certificate extraction/installation, browser integration, and xdotool automation for headless environments.
+domain: cybersecurity
+subdomain: web-application-security
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1190
+nist_csf:
+- DE.CM-01
 ---
-
 # Burp Suite 代理配置 + HTTPS 证书 (Kali Linux)
 
 ## 环境概览
@@ -13,12 +24,12 @@ description: Burp Suite proxy setup with HTTPS certificate configuration on Kali
 - DISPLAY=:0.0 (Xfce desktop)
 - xdotool available for GUI automation
 
-## 一、启动 Burp Suite（Hermes 按需自启）
+## 一、启动 Burp Suite（the AI agent 按需自启）
 
-默认原则：需要抓包/HTTP history/代理复现时，Hermes 主控应自行启动 Burp Suite、Burp MCP/Gateway 并验证端口，不等待用户手动打开。实战前首选完整就绪脚本：
+默认原则：需要抓包/HTTP history/代理复现时，the agent orchestrator应自行启动 Burp Suite、Burp MCP/Gateway 并验证端口，不等待用户手动打开。实战前首选完整就绪脚本：
 
 ```bash
-/root/.hermes/scripts/hermes-burp-ready.sh
+/root/.the agent/scripts/the agent-burp-ready.sh
 ```
 
 Kali `burpsuite` 包装器参数坑：`--config-file` 和 `--project-file` 必须使用等号形式（如 `--config-file=/root/.BurpSuite/proxy_config.json`），不要写成 `--config-file /path`，否则包装器会报 `Expected a value for option config-file`。如果 `xdotool search --name Burp` 只看到 `burp-StartBurp` 且 `ss -tlnp | grep 8080` 长时间为空，说明 Burp GUI 停在启动/项目选择页，MCP 没坏，代理 listener 尚未创建；此时优先处理 GUI 启动页或用现成项目文件启动，再验证 8080。
@@ -34,31 +45,31 @@ DISPLAY=:0.0 burpsuite --use-defaults --disable-extensions --config-file=/root/.
 Burp GUI 卡住时的纯 CLI 降级：
 
 ```bash
-/root/.hermes/scripts/hermes-mitm-fallback.sh verify
+/root/.the agent/scripts/the agent-mitm-fallback.sh verify
 ```
 
-该脚本启动 `mitmdump` 监听 `127.0.0.1:8081`，验证 HTTP/HTTPS，输出 `/tmp/hermes-mitm-fallback/traffic.jsonl` 和 `/tmp/hermes-mitm-fallback/flows.mitm`；用于临时抓包/落证据，不替代 Burp MCP 的报告分析能力。
+该脚本启动 `mitmdump` 监听 `127.0.0.1:8081`，验证 HTTP/HTTPS，输出 `/tmp/the agent-mitm-fallback/traffic.jsonl` 和 `/tmp/the agent-mitm-fallback/flows.mitm`；用于临时抓包/落证据，不替代 Burp MCP 的报告分析能力。
 
 该脚本会完成：
-- 调用 `hermes-ensure-tools.sh --burp` 启动/确认 Burp Suite GUI、Gateway、Burp MCP server。
-- 确认 `127.0.0.1:8080` 监听、`hermes mcp test burpsuite` 发现 6 个工具。
+- 调用 `the agent-ensure-tools.sh --burp` 启动/确认 Burp Suite GUI、Gateway、Burp MCP server。
+- 确认 `127.0.0.1:8080` 监听、`the agent mcp test burpsuite` 发现 6 个工具。
 - 确认 Burp CA 存在并写入系统 CA/NSS，生成 Android 系统证书 `/tmp/9a5ba575.0` 一类路径。
 - 用 curl 经 Burp 代理验证 HTTP/HTTPS 都能通过。
 - 用 Burp MCP 直连验证 `burp_health`、HTTP/HTTPS `burp_proxy_request`、`burp_logs`、`burp_analyze_logs` 闭环。
-- 输出证据目录 `/tmp/hermes-burp-ready/summary.json`、`hermes_mcp_test.txt`、`curl_http.json`、`curl_https.json`、`mcp_direct.json`。
+- 输出证据目录 `/tmp/the agent-burp-ready/summary.json`、`the agent_mcp_test.txt`、`curl_http.json`、`curl_https.json`、`mcp_direct.json`。
 
 常用模式：
 ```bash
-/root/.hermes/scripts/hermes-burp-ready.sh --quiet       # 只输出 summary JSON
-/root/.hermes/scripts/hermes-burp-ready.sh --no-clear    # 保留现有 MCP 日志，不清空 traffic.jsonl
-/root/.hermes/scripts/hermes-burp-ready.sh --expose-lan  # 额外用 socat 暴露 Kali 网卡 IP:8080 给 Windows/手机
+/root/.the agent/scripts/the agent-burp-ready.sh --quiet       # 只输出 summary JSON
+/root/.the agent/scripts/the agent-burp-ready.sh --no-clear    # 保留现有 MCP 日志，不清空 traffic.jsonl
+/root/.the agent/scripts/the agent-burp-ready.sh --expose-lan  # 额外用 socat 暴露 Kali 网卡 IP:8080 给 Windows/手机
 ```
 
 轻量检查仍可用统一脚本：
 
 ```bash
-/root/.hermes/scripts/hermes-ensure-tools.sh --burp
-/root/.hermes/scripts/hermes-ensure-tools.sh --status
+/root/.the agent/scripts/the agent-ensure-tools.sh --burp
+/root/.the agent/scripts/the agent-ensure-tools.sh --status
 ```
 
 脚本会：
@@ -182,37 +193,37 @@ curl -x http://127.0.0.1:8080 --cacert /tmp/burp_ca.pem https://httpbin.org/ip
 curl -x http://127.0.0.1:8080 https://httpbin.org/ip
 ```
 
-### 6.1 Burp MCP 闭环验证（Hermes 使用）
+### 6.1 Burp MCP 闭环验证（the AI agent 使用）
 
-排查 Hermes 能否操控 Burp 时要分层验证：
+排查 the AI agent 能否操控 Burp 时要分层验证：
 
-1. Hermes MCP 配置/工具发现：
+1. the AI agent MCP 配置/工具发现：
 ```bash
-hermes mcp list
-hermes mcp test burpsuite
+the agent mcp list
+the agent mcp test burpsuite
 ```
-期望 `burpsuite` enabled，`hermes mcp test burpsuite` 能连接并发现工具（常见工具：`burp_health`、`burp_proxy_request`、`burp_logs`、`burp_analyze_logs`、`burp_clear_logs`、`burp_import_export_xml`）。
+期望 `burpsuite` enabled，`the agent mcp test burpsuite` 能连接并发现工具（常见工具：`burp_health`、`burp_proxy_request`、`burp_logs`、`burp_analyze_logs`、`burp_clear_logs`、`burp_import_export_xml`）。
 
 2. Burp 代理进程：
 ```bash
-/root/.hermes/scripts/hermes-ensure-tools.sh --burp
+/root/.the agent/scripts/the agent-ensure-tools.sh --burp
 ss -tlnp | grep ':8080'
 ```
 注意：Burp MCP server 正常不等于 Burp Suite 代理已监听；`burp_health` 报 `connection refused` 通常是 Burp GUI/Proxy 未启动，不是 MCP 配置损坏。
 
 3. MCP 实际请求/日志闭环：
-- 先用 `burp_clear_logs` 清空 `/root/.hermes/burp_mcp/traffic.jsonl`。
+- 先用 `burp_clear_logs` 清空 `/root/.the agent/burp_mcp/traffic.jsonl`。
 - 用 `burp_proxy_request` 分别请求一个 HTTP 和 HTTPS 测试 URL，例如：
-  - `http://httpbin.org/get?hermes_burp_mcp_check=1`
-  - `https://httpbin.org/get?hermes_burp_mcp_https_check=1`
-- 再用 `burp_logs(search='hermes_burp_mcp')` 和 `burp_analyze_logs` 验证日志中出现 2 条 200 响应。
+  - `http://httpbin.org/get?the agent_burp_mcp_check=1`
+  - `https://httpbin.org/get?the agent_burp_mcp_https_check=1`
+- 再用 `burp_logs(search='the agent_burp_mcp')` 和 `burp_analyze_logs` 验证日志中出现 2 条 200 响应。
 
 4. 升级判断：
 ```bash
 burpsuite --version
 apt-cache policy burpsuite
 ```
-若 `已安装` 与 `候选` 相同，Kali 当前源无可用升级；不要为了“开启 MCP”盲目升级。Hermes 当前 Burp MCP 是通过本地 `burp_mcp_server.py` 调 Burp HTTP proxy 完成，不依赖 Burp 官方内置 MCP 开关。
+若 `已安装` 与 `候选` 相同，Kali 当前源无可用升级；不要为了“开启 MCP”盲目升级。the AI agent 当前 Burp MCP 是通过本地 `burp_mcp_server.py` 调 Burp HTTP proxy 完成，不依赖 Burp 官方内置 MCP 开关。
 
 ## 七、通过 Burp 发送请求 (Repeater 替代方案)
 
@@ -227,14 +238,14 @@ curl -x http://127.0.0.1:8080 -X POST https://target.com/api \
 
 ## 七点五、Windows Proxifier → Kali Burp 抓微信/QQ小程序
 
-适用场景：小程序运行在用户 Windows 电脑上，Burp 在 Kali/Hermes 机器上，需要把 Windows 进程流量转发到 Kali Burp 供 Hermes 分析。
+适用场景：小程序运行在用户 Windows 电脑上，Burp 在 Kali/the AI agent 机器上，需要把 Windows 进程流量转发到 Kali Burp 供 the AI agent 分析。
 
 ### 7.5.1 Kali 侧准备
 
 Burp 默认只监听 `127.0.0.1:8080`，Windows 不能直接访问。保持 Burp GUI/代理进程运行，然后用网卡 IP 做转发：
 
 ```bash
-/root/.hermes/scripts/hermes-ensure-tools.sh --burp
+/root/.the agent/scripts/the agent-ensure-tools.sh --burp
 KALI_IP=$(ip -4 addr show eth0 | awk '/inet /{print $2}' | cut -d/ -f1)
 pkill -f "socat TCP-LISTEN:8080,bind=$KALI_IP" 2>/dev/null || true
 socat TCP-LISTEN:8080,bind=$KALI_IP,fork,reuseaddr TCP:127.0.0.1:8080
@@ -317,7 +328,7 @@ http://KALI_IP:8080
 
 若 Burp 只有 `servicewechat.com`、`sh.servicewechat.com`、`/ob/sdkmonitor`、`/ob/wxob`、`/wxa-qbase/report`，这通常只是微信基础库/监控上报，不是业务接口。继续在 Proxifier Connections 中找访问真实业务域名的进程并加入规则；同时在小程序中触发强制联网动作：退出重进、切换周次/学期、课程详情、个人中心/绑定学校/下拉刷新。
 
-### 7.5.5 Hermes 分析注意事项
+### 7.5.5 the AI agent 分析注意事项
 
 - 保持 Burp GUI/代理进程运行。关闭 Burp GUI 往往会关闭 `127.0.0.1:8080` 代理；此时 socat 仍可能监听 `KALI_IP:8080`，但后端会 `connection refused`。
 - Burp MCP 的 JSON 日志不一定等同于 Burp GUI 的 Proxy HTTP history；外部 Windows/Proxifier 进来的流量可能已在 GUI 中可见，但 MCP log 仍为空。遇到这种情况，以 GUI HTTP history、Burp 导出 XML、或命令行抓包/mitmproxy 作为分析来源。
@@ -358,14 +369,14 @@ timeout 20 tcpdump -i eth0 -nn -A 'tcp port 8080'
 
 ## 十八、Windows Proxifier → Kali Burp 抓微信/QQ小程序
 
-适用场景：小程序运行在用户 Windows 电脑上，Burp Suite 运行在 Kali/Hermes 机器上，需要让 Windows 的 Proxifier 把小程序流量转发到 Kali Burp，便于 Hermes 通过 Burp/MCP 分析。
+适用场景：小程序运行在用户 Windows 电脑上，Burp Suite 运行在 Kali/the AI agent 机器上，需要让 Windows 的 Proxifier 把小程序流量转发到 Kali Burp，便于 the AI agent 通过 Burp/MCP 分析。
 
 ### 18.1 Kali 侧先确认代理入口
 
 1. 启动/确认 Burp：
 ```bash
-/root/.hermes/scripts/hermes-ensure-tools.sh --burp
-/root/.hermes/scripts/hermes-ensure-tools.sh --status
+/root/.the agent/scripts/the agent-ensure-tools.sh --burp
+/root/.the agent/scripts/the agent-ensure-tools.sh --status
 ```
 
 2. Burp 默认只监听 `127.0.0.1:8080` 时，用 `socat` 暴露到 Kali 网卡 IP：
@@ -436,7 +447,7 @@ http://<KALI_IP>:8080
 
 1. 清空 Burp MCP 日志，避免旧包干扰：
 ```python
-# 使用 burp_clear_logs 工具，或清空 /root/.hermes/burp_mcp/traffic.jsonl
+# 使用 burp_clear_logs 工具，或清空 /root/.the agent/burp_mcp/traffic.jsonl
 ```
 
 2. 先做 Edge Test 切分问题：临时加规则 `msedge.exe -> Any host -> 80;443 -> Proxy HTTPS kali`，Windows Edge 打开：

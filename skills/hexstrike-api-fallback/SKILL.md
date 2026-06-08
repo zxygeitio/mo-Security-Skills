@@ -1,17 +1,23 @@
 ---
 name: hexstrike-api-fallback
-description: HexStrike MCP bridge 不稳定时的 HTTP API fallback 调用方案
-triggers:
-  - mcp_hexstrike_* 调用失败
-  - ClosedResourceError
-  - bridge 进程退出
-  - stdio transport 错误
+description: >-
+  HexStrike MCP bridge 不稳定时的 HTTP API fallback 调用方案
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1046
+nist_csf:
+- ID.RA-01
 ---
-
 # HexStrike API Fallback — MCP bridge 不稳定时的替代方案
 
 ## Problem
-HexStrike MCP bridge (`/root/hexstrike-mcp-bridge.py`) 通过 stdio transport 连接 Hermes Agent 时，进程频繁退出或报 `ClosedResourceError`。原因：FastMCP 1.27.0 + Python 3.13 在无 tty 环境下 stdio 兼容性不稳定。
+HexStrike bridge (`/root/hexstrike-mcp-bridge.py`) 通过 stdio transport 连接 the AI agent 时，进程频繁退出或报 `ClosedResourceError`。原因：FastMCP 1.27.0 + Python 3.13 在无 tty 环境下 stdio 兼容性不稳定。
 
 但 HexStrike HTTP API (`http://127.0.0.1:8888`) 本身完全稳定。
 
@@ -96,7 +102,7 @@ curl -s http://127.0.0.1:8888/health
 
 ## MCP Bridge 自动拉起 HTTP API
 `/root/hexstrike-mcp-bridge.py` 已加入 `ensure_hexstrike_server()`：
-- `hermes mcp test hexstrike` / `/reload-mcp` 时如果 `127.0.0.1:8888` 未运行，会自动执行 `/root/hexstrike-ai/hexstrike-env/bin/python /root/hexstrike-ai/hexstrike_server.py --port 8888`
+- `the agent mcp test hexstrike` / `/reload-mcp` 时如果 `127.0.0.1:8888` 未运行，会自动执行 `/root/hexstrike-ai/hexstrike-env/bin/python /root/hexstrike-ai/hexstrike_server.py --port 8888`
 - stdout/stderr 追加到 `/root/hexstrike-ai/hexstrike.log`
 - 可用环境变量覆盖路径：`HEXSTRIKE_ROOT`, `HEXSTRIKE_PYTHON`, `HEXSTRIKE_SERVER`, `HEXSTRIKE_LOG`
-- 验证命令：先 `pkill -f '/root/hexstrike-ai/hexstrike_server.py --port 8888'`，再 `hermes mcp test hexstrike`，应显示 connected/tools discovered，随后 `curl http://127.0.0.1:8888/health` 应恢复 healthy
+- 验证命令：先 `pkill -f '/root/hexstrike-ai/hexstrike_server.py --port 8888'`，再 `the agent mcp test hexstrike`，应显示 connected/tools discovered，随后 `curl http://127.0.0.1:8888/health` 应恢复 healthy

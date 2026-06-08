@@ -1,9 +1,24 @@
 ---
 name: script-analysis-invisible-code
-description: 高级脚本分析与隐形代码检测 — Python/JS/VBA逆向 + Unicode零宽字符混淆检测 (Glassworm)
-tags: [script-analysis, obfuscation, unicode, supply-chain, reverse-engineering]
+description: >-
+  高级脚本分析与隐形代码检测 — Python/JS/VBA逆向 + Unicode零宽字符混淆检测 (Glassworm)
+domain: cybersecurity
+subdomain: malware-analysis
+tags:
+- script-analysis
+- obfuscation
+- unicode
+- supply-chain
+- reverse-engineering
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1027
+- T1059
+nist_csf:
+- DE.CM-01
 ---
-
 # 高级脚本分析与隐形代码检测
 
 ## 核心原理

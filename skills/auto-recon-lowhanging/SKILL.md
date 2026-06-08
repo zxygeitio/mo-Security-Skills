@@ -1,9 +1,27 @@
 ---
 name: auto-recon-lowhanging
-description: 自动化初始侦察与低垂果实采集 — 模块化服务探测 + SQLi盲注验证 + 协议枚举 + 隐写术提取 (ctf-katana逻辑)
-tags: [recon, automation, sqli, steganography, enumeration, ctf]
+description: >-
+  自动化初始侦察与低垂果实采集 — 模块化服务探测 + SQLi盲注验证 + 协议枚举 + 隐写术提取 (ctf-katana逻辑)
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- recon
+- automation
+- sqli
+- steganography
+- enumeration
+- ctf
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1595
+- T1046
+- T1190
+nist_csf:
+- DE.CM-01
+- ID.RA-01
 ---
-
 # 自动化初始侦察与低垂果实采集
 
 ## 核心原理

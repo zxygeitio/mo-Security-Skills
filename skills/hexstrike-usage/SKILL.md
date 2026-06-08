@@ -1,29 +1,33 @@
 ---
 name: hexstrike-usage
-description: How Hermes should use HexStrike — MCP tools first, HTTP API as fallback. Tool mapping, parameter conventions, and workflow integration.
-triggers:
-  - penetration testing
-  - security scanning
-  - bug bounty
-  - vulnerability scanning
-  - recon
-  - nmap / nuclei / wafw00f / sqlmap / ffuf / subfinder
-  - SRC / 渗透测试 / 漏洞挖掘
+description: >-
+  How Hermes should use HexStrike — MCP tools first, HTTP API as fallback. Tool mapping, parameter conventions, and workflow integration.
+domain: cybersecurity
+subdomain: penetration-testing
+tags:
+- security
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1046
+- T1190
+nist_csf:
+- DE.CM-01
 ---
-
 ## Local API Health Bootstrap
 
-Before relying on HexStrike MCP tools, verify that the backing HexStrike API is healthy on `127.0.0.1:8888`. This skill includes a reusable bootstrap script at `scripts/ensure_hexstrike.sh`; run or copy it to start `/root/hexstrike-ai/hexstrike_server.py` only when the `/health` endpoint is not already healthy. `hermes mcp test hexstrike` validates the MCP bridge and tool discovery, while `/health` validates the underlying API service.
+Before relying on HexStrike tools, verify that the backing HexStrike API is healthy on `127.0.0.1:8888`. This skill includes a reusable bootstrap script at `scripts/ensure_hexstrike.sh`; run or copy it to start `/root/hexstrike-ai/hexstrike_server.py` only when the `/health` endpoint is not already healthy. `the agent mcp test hexstrike` validates the MCP bridge and tool discovery, while `/health` validates the underlying API service.
 
- — Hermes Integration Guide
+ — the AI agent Integration Guide
 
 ## Architecture
 
-HexStrike AI runs as a local HTTP API server on `http://127.0.0.1:8888`. Hermes accesses it through two channels:
+HexStrike AI runs as a local HTTP API server on `http://127.0.0.1:8888`. the AI agent accesses it through two channels:
 
 | Channel | How | When to Use |
 |---------|-----|-------------|
-| **MCP** (preferred) | `mcp_hexstrike_*` tools — auto-registered after Hermes restart with MCP config | First choice — rich tool descriptions, structured output |
+| **MCP** (preferred) | `mcp_hexstrike_*` tools — auto-registered after the AI agent restart with MCP config | First choice — rich tool descriptions, structured output |
 | **HTTP API** (fallback) | `curl -s http://127.0.0.1:8888/api/tools/<name> -X POST -d '{...}'` | When MCP bridge fails, returns `ClosedResourceError`, or tool not in MCP |
 
 ## Available Tools (98+ operational)
@@ -110,7 +114,7 @@ curl -s http://127.0.0.1:8888/api/command \
 
 ## Startup
 
-HexStrike must be running before Hermes can use it. Use `terminal(background=true)` — do NOT use `&` in a foreground command, it will error:
+HexStrike must be running before the AI agent can use it. Use `terminal(background=true)` — do NOT use `&` in a foreground command, it will error:
 
 ```bash
 # CORRECT — background mode

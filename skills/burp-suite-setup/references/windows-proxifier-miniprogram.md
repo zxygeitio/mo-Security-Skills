@@ -7,8 +7,8 @@
 1. 启动 Burp 并确认 `127.0.0.1:8080` 可用：
 
 ```bash
-/root/.hermes/scripts/hermes-ensure-tools.sh --burp
-/root/.hermes/scripts/hermes-ensure-tools.sh --status
+~/.agent/scripts/hermes-ensure-tools.sh --burp
+~/.agent/scripts/hermes-ensure-tools.sh --status
 ```
 
 2. 获取 Kali 网卡 IP，并把网卡 IP 的 8080 转发到 Burp 本地 8080。Burp 默认只绑定 `127.0.0.1` 时，Windows 不能直接连：

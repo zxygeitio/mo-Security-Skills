@@ -5,7 +5,7 @@ Use this when the user provides a GitHub PAT to improve the daily vulnerability 
 ## Safe handling
 
 - Treat the PAT as a secret. Never echo it back, include it in logs, or write it into skill/memory text.
-- Store it in `/root/.hermes/.env` as `GITHUB_TOKEN=...` with mode `0600`.
+- Store it in `~/.agent/.env` as `GITHUB_TOKEN=...` with mode `0600`.
 - Prefer file updates through Python or a non-echoing write path so the token is not exposed in shell history or terminal output.
 - Do not save the token value in memory or references.
 
@@ -15,9 +15,9 @@ Validate using GitHub's rate-limit endpoint and print only limits/remaining coun
 
 ```bash
 set -a
-. /root/.hermes/.env
+. ~/.agent/.env
 set +a
-/root/.hermes/hermes-agent/venv/bin/python - <<'PY'
+~/.agent/agent-venv/bin/python - <<'PY'
 import json, os, urllib.request, urllib.error
 headers = {
     'Accept': 'application/vnd.github+json',
@@ -38,12 +38,12 @@ Expected authenticated baseline: `core_limit=5000`; GitHub search is often separ
 
 ## Script integration pattern
 
-The daily updater should load `/root/.hermes/.env` itself at runtime before reading `GITHUB_TOKEN`. Do not rely on the currently running Gateway process inheriting new environment variables, because restarting Gateway can kill active agent/gateway work and may be blocked by smart approvals.
+The daily updater should load `~/.agent/.env` itself at runtime before reading `GITHUB_TOKEN`. Do not rely on the currently running the agent gateway process inheriting new environment variables, because restarting the agent gateway can kill active agent/gateway work and may be blocked by smart approvals.
 
 Minimal loader pattern:
 
 ```python
-def load_dotenv(path=Path('/root/.hermes/.env')):
+def load_dotenv(path=Path('~/.agent/.env')):
     if not path.exists():
         return
     for raw in path.read_text(errors='ignore').splitlines():
@@ -57,16 +57,16 @@ def load_dotenv(path=Path('/root/.hermes/.env')):
             os.environ[key] = value
 ```
 
-Call `load_dotenv()` near the top of `/root/.hermes/scripts/update-vuln-intel.py` before GitHub lookups.
+Call `load_dotenv()` near the top of `~/.agent/scripts/update-vuln-intel.py` before GitHub lookups.
 
 ## Functional PoC lookup smoke test
 
 Use a known public CVE such as `CVE-2021-44228` to test `fetch_github_pocs()` and print only repository names/star counts, not the token.
 
 ```bash
-/root/.hermes/hermes-agent/venv/bin/python - <<'PY'
+~/.agent/agent-venv/bin/python - <<'PY'
 import importlib.util
-p = '/root/.hermes/scripts/update-vuln-intel.py'
+p = '~/.agent/scripts/update-vuln-intel.py'
 spec = importlib.util.spec_from_file_location('uvi', p)
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
@@ -78,6 +78,6 @@ for r in refs[:3]:
 PY
 ```
 
-## Gateway/Cron note
+## the agent gateway/Cron note
 
-If the updater self-loads `.env`, no Gateway restart is needed for the next no-agent Cron run to see the token. Verify Cron remains scheduled with `hermes cron status` when normal tools are available. Only restart Gateway when a change truly requires process-level env refresh and it is safe to interrupt running gateway sessions.
+If the updater self-loads `.env`, no the agent gateway restart is needed for the next no-agent Cron run to see the token. Verify Cron remains scheduled with `agent cron status` when normal tools are available. Only restart the agent gateway when a change truly requires process-level env refresh and it is safe to interrupt running gateway sessions.

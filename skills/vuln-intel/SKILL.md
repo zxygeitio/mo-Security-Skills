@@ -1,10 +1,24 @@
 ---
 name: vuln-intel
-description: 漏洞情报聚合 — 实时CVE搜索、Exploit-DB集成、产品漏洞追踪、指纹→漏洞→利用自动映射
-category: penetration-testing-learning
-tags: [cve, exploit, intelligence, nvd, exploitdb]
+description: >-
+  漏洞情报聚合 — 实时CVE搜索、Exploit-DB集成、产品漏洞追踪、指纹→漏洞→利用自动映射
+domain: cybersecurity
+subdomain: threat-intelligence
+tags:
+- cve
+- exploit
+- intelligence
+- nvd
+- exploitdb
+version: '1.0'
+author: zxygeitio
+license: Apache-2.0
+mitre_attack:
+- T1588
+- T1592
+nist_csf:
+- ID.RA-01
 ---
-
 # 漏洞情报聚合 (Vulnerability Intelligence)
 
 ## 概述
@@ -118,19 +132,19 @@ search_cnnvd() {
 
 ```bash
 # 按产品+版本精确搜索 (引擎)
-/usr/bin/python3 /root/.hermes/scripts/exploitdb_engine.py product "apache" "2.4.49"
+/usr/bin/python3 /root/.the agent/scripts/exploitdb_engine.py product "apache" "2.4.49"
 
 # CVE搜索 (引擎)
-/usr/bin/python3 /root/.hermes/scripts/exploitdb_engine.py cve CVE-2021-44228
+/usr/bin/python3 /root/.the agent/scripts/exploitdb_engine.py cve CVE-2021-44228
 
 # 高价值RCE (引擎)
-/usr/bin/python3 /root/.hermes/scripts/exploitdb_engine.py rce --limit 20
+/usr/bin/python3 /root/.the agent/scripts/exploitdb_engine.py rce --limit 20
 
 # nmap XML自动匹配 (引擎)
-/usr/bin/python3 /root/.hermes/scripts/exploitdb_engine.py nmap /tmp/scan.xml
+/usr/bin/python3 /root/.the agent/scripts/exploitdb_engine.py nmap /tmp/scan.xml
 
 # 指纹→exploit→攻击脚本全链路 (管道)
-/usr/bin/python3 /root/.hermes/scripts/edb-pipeline.py --nmap /tmp/scan.xml --target HOST --script /tmp/attack.sh
+/usr/bin/python3 /root/.the agent/scripts/edb-pipeline.py --nmap /tmp/scan.xml --target HOST --script /tmp/attack.sh
 
 # 详细用法见 exploit-db-integration skill
 ```
@@ -511,33 +525,33 @@ echo "[完成] 详细结果: $OUTDIR/"
 
 ### 6.0 本机按需实时查询（当前策略）
 
-用户已明确：Hermes 并非 7×24 常驻，漏洞情报不应依赖每日自动 Cron；应在 SRC/渗透任务识别到产品、版本、组件或 CVE 时现场查询/刷新。
+用户已明确：the AI agent 并非 7×24 常驻，漏洞情报不应依赖每日自动 Cron；应在 SRC/渗透任务识别到产品、版本、组件或 CVE 时现场查询/刷新。
 
 当前入口：
 
 ```bash
-/root/.hermes/scripts/hermes-vuln-query.sh --keyword "spring boot" --refresh --days 30 --github-limit 10
-/root/.hermes/scripts/hermes-vuln-query.sh "CVE-2021-44228" --refresh --github-limit 5
-/root/.hermes/scripts/hermes-vuln-query.sh --local "nginx" --limit 20
+/root/.the agent/scripts/the agent-vuln-query.sh --keyword "spring boot" --refresh --days 30 --github-limit 10
+/root/.the agent/scripts/the agent-vuln-query.sh "CVE-2021-44228" --refresh --github-limit 5
+/root/.the agent/scripts/the agent-vuln-query.sh --local "nginx" --limit 20
 ```
 
 底层脚本/数据：
 
-- 查询入口：`/root/.hermes/scripts/hermes-vuln-query.sh`
-- 刷新脚本：`/root/.hermes/scripts/update-vuln-intel.py`
-- 本地缓存库：`/root/.hermes/vuln-intel/vuln_intel.db`
-- 摘要缓存：`/root/.hermes/vuln-intel/latest.md`
-- 原始数据：`/root/.hermes/vuln-intel/raw/`
+- 查询入口：`/root/.the agent/scripts/the agent-vuln-query.sh`
+- 刷新脚本：`/root/.the agent/scripts/update-vuln-intel.py`
+- 本地缓存库：`/root/.the agent/vuln-intel/vuln_intel.db`
+- 摘要缓存：`/root/.the agent/vuln-intel/latest.md`
+- 原始数据：`/root/.the agent/vuln-intel/raw/`
 
 数据源：
 - NVD CVE API：按时间窗口拉取新增/更新 CVE。
 - CISA KEV：标记已知被利用漏洞。
 - Exploit-DB CSV：机会性提取 CVE 与 exploit 关联。
-- GitHub repository search：按高价值 CVE 搜索公开 PoC；`GITHUB_TOKEN` 已配置在 `/root/.hermes/.env`，脚本会自动加载且不回显。
+- GitHub repository search：按高价值 CVE 搜索公开 PoC；`GITHUB_TOKEN` 已配置在 `/root/.the agent/.env`，脚本会自动加载且不回显。
 
 使用规则：
 1. 不创建长期每日 CVE/POC Cron；需要时才查。
-2. 识别到目标指纹/产品/版本/CVE 后，优先用 `hermes-vuln-query.sh --refresh` 做实时查询，再结合目标暴露面验证。
+2. 识别到目标指纹/产品/版本/CVE 后，优先用 `the agent-vuln-query.sh --refresh` 做实时查询，再结合目标暴露面验证。
 3. 本地 SQLite/latest.md 只是缓存，不代表最新真相；涉及当前目标时应刷新。
 4. 新 CVE/PoC 只作为候选情报，不是漏洞结论；必须结合目标版本、暴露面、安全 PoC 和对照请求复核。
 5. 不运行公开 exploit 攻击真实目标；只采集元数据、生成候选优先级和辅助安全验证。
