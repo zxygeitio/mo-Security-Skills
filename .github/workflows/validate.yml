@@ -24,3 +24,12 @@ jobs:
 
       - name: Verify index.json is in sync
         run: python scripts/build_index.py --check
+
+      - name: Verify index.json is valid JSON
+        run: python -c "import json; json.load(open('index.json', encoding='utf-8'))"
+
+      - name: Byte-compile all Python helpers
+        run: find . -name '*.py' -not -path './.git/*' -print0 | xargs -0 -n1 python -m py_compile
+
+      - name: Syntax-check all shell helpers
+        run: find . -name '*.sh' -not -path './.git/*' -print0 | xargs -0 -n1 bash -n
