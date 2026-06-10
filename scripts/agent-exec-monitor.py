@@ -13,9 +13,9 @@ v2.0 升级 (2026-06-09 基于 NJMU 测试教训):
 v2.1 升级 (2026-06-09 GPT审计修复):
   6. 按workspace隔离状态: --workspace参数，避免跨目标状态污染
 """
-import json, os, sys, time, hashlib, argparse
+import json, os, sys, hashlib
 from datetime import datetime, timezone
-from collections import Counter, defaultdict
+from collections import Counter
 
 DATA_DIR = "/tmp"
 MONITOR_FILE = os.path.join(DATA_DIR, "hermes-exec-monitor.jsonl")
@@ -186,7 +186,7 @@ def check_loop(records, current_tool, current_target):
         }
         append_record(alert, ALERTS_FILE)
         print(f"\n🚨 LOOP FORCE STOP: {current_tool} x{consecutive} on {current_target}")
-        print(f"   Suggestion: Switch tool, change angle, or report existing findings")
+        print("   Suggestion: Switch tool, change angle, or report existing findings")
         sys.exit(2)
     elif consecutive >= SAME_TOOL_WARN:
         alert = {
@@ -228,7 +228,7 @@ def check_semantic_loop(records):
             append_record(alert, ALERTS_FILE)
             print(f"\n🚨 SEMANTIC LOOP FORCE STOP: Same plan repeated {count}x")
             print(f"   Plan signature: {sig}")
-            print(f"   Action: STOP all testing, report findings, or switch to different target")
+            print("   Action: STOP all testing, report findings, or switch to different target")
             sys.exit(2)
         elif count >= PLAN_REPEAT_WARN:
             alert = {
@@ -240,7 +240,7 @@ def check_semantic_loop(records):
             }
             append_record(alert, ALERTS_FILE)
             print(f"\n⚠️  SEMANTIC LOOP WARNING: Same plan repeated {count}x")
-            print(f"   Consider: Are you generating new results or repeating negatives?")
+            print("   Consider: Are you generating new results or repeating negatives?")
 
 def check_staleness(records):
     """v2.0: Time-based exit gate. Only triggers AFTER first confirmed finding."""
@@ -262,7 +262,7 @@ def check_staleness(records):
         }
         append_record(alert, ALERTS_FILE)
         print(f"\n🚨 STALENESS FORCE STOP: {int(minutes)} min without confirmed findings")
-        print(f"   Action: Report existing findings or switch to different target/angle")
+        print("   Action: Report existing findings or switch to different target/angle")
         # Don't sys.exit(2) here - let the agent decide. Just emit a strong warning.
     elif minutes >= STALE_MINUTES_WARN:
         print(f"\n⚠️  STALENESS WARNING: {int(minutes)} min since last confirmed finding")
@@ -287,7 +287,7 @@ def check_stagnation(records):
         }
         append_record(alert, ALERTS_FILE)
         print(f"\n🚨 STAGNATION FORCE: {no_evidence_count} calls without new evidence")
-        print(f"   Action: Report findings, try completely different approach, or switch target")
+        print("   Action: Report findings, try completely different approach, or switch target")
         sys.exit(2)
     elif no_evidence_count >= STAGNATION_WARN:
         print(f"\n⚠️  STAGNATION WARNING: {no_evidence_count} calls without new evidence")
@@ -330,7 +330,7 @@ def cmd_reject(args):
     }
     append_record(record, REJECTED_FILE)
     print(f"📝 Rejected pattern recorded: {tool}/{target}/{finding_type}")
-    print(f"   Future similar findings will trigger warnings")
+    print("   Future similar findings will trigger warnings")
 
 def cmd_stats(args):
     """Show execution statistics"""
@@ -344,7 +344,7 @@ def cmd_stats(args):
     confirmed = [r for r in records if r.get("validation_result") == "confirmed"]
     rejected = load_rejected()
 
-    print(f"=== Agent Execution Monitor Stats v2.0 ===")
+    print("=== Agent Execution Monitor Stats v2.0 ===")
     print(f"Total tool calls: {len(records)}")
     print(f"Confirmed findings: {len(confirmed)}")
     print(f"Rejected patterns: {len(rejected)}")
@@ -355,7 +355,7 @@ def cmd_stats(args):
         minutes = minutes_since(last_confirmed)
         print(f"Time since last confirmed: {int(minutes)} min")
     else:
-        print(f"Time since last confirmed: N/A (none confirmed)")
+        print("Time since last confirmed: N/A (none confirmed)")
 
     # v2.0: Stagnation
     no_evidence = 0
@@ -370,10 +370,10 @@ def cmd_stats(args):
         sig = compute_plan_signature(records)
         print(f"Current plan signature: {sig}")
 
-    print(f"\nTool usage:")
+    print("\nTool usage:")
     for tool, count in tool_counts.most_common(15):
         print(f"  {tool}: {count}")
-    print(f"\nTop targets:")
+    print("\nTop targets:")
     for target, count in target_counts.most_common(10):
         print(f"  {target}: {count}")
 
@@ -511,20 +511,20 @@ def cmd_summary(args):
         minutes = minutes_since(last_confirmed)
         print(f"Time since last confirmed: {int(minutes)} min")
         if minutes >= STALE_MINUTES_WARN:
-            print(f"  ⚠️  Recommend: switch strategy or report existing findings")
+            print("  ⚠️  Recommend: switch strategy or report existing findings")
 
     if confirmed:
-        print(f"\n--- Confirmed Findings ---")
+        print("\n--- Confirmed Findings ---")
         for r in confirmed:
             print(f"  [{r.get('severity','?')}] {r.get('tool','?')} → {r.get('target','?')}: {r.get('evidence','')}")
 
     if pending:
-        print(f"\n--- Pending Hypotheses ---")
+        print("\n--- Pending Hypotheses ---")
         for r in pending:
             print(f"  {r.get('hypothesis','')} (via {r.get('tool','?')} on {r.get('target','?')})")
 
     if rejected:
-        print(f"\n--- Rejected Patterns (avoid these) ---")
+        print("\n--- Rejected Patterns (avoid these) ---")
         for r in rejected:
             print(f"  {r.get('tool','?')}/{r.get('target','?')}/{r.get('finding_type','')} - {r.get('user_feedback','')}")
 
@@ -620,8 +620,8 @@ if __name__ == "__main__":
         print(f"  Semantic loop: warn@{PLAN_REPEAT_WARN}x, force@{PLAN_REPEAT_FORCE}x")
         print(f"  Staleness: warn@{STALE_MINUTES_WARN}min, force@{STALE_MINUTES_FORCE}min")
         print(f"  Stagnation: warn@{STAGNATION_WARN}, force@{STAGNATION_FORCE}")
-        print(f"  Rejected memory: persistent across calls")
-        print(f"  Workspace isolation: --workspace NAME")
+        print("  Rejected memory: persistent across calls")
+        print("  Workspace isolation: --workspace NAME")
         sys.exit(0)
 
     # Parse --workspace before command

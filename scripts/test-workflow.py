@@ -2,7 +2,6 @@
 """简单测试工作流"""
 
 import subprocess
-import sys
 
 def main():
     print("测试工作流开始")

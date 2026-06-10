@@ -26,12 +26,9 @@ import argparse
 import json
 import re
 import sys
-import time
-import subprocess
 from collections import defaultdict
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import Any, Optional
 
 SCRIPTS_DIR = Path(__file__).parent
 sys.path.insert(0, str(SCRIPTS_DIR))
@@ -165,8 +162,8 @@ class LogicFlawReasoner:
                     title=f"Verification replay: {flow_type}",
                     confidence="low",
                     reasoning=(
-                        f"Verification step found. If the system uses a one-time token/code, "
-                        f"replaying the same verification might work if the token isn't invalidated."
+                        "Verification step found. If the system uses a one-time token/code, "
+                        "replaying the same verification might work if the token isn't invalidated."
                     ),
                     targets=urls,
                     test_method="Replay verification request",
@@ -365,7 +362,7 @@ class LogicFlawReasoner:
                     test_method="Access resource with different user's ID",
                     test_commands=[
                         f'curl -sk "{sample_url}" -m 10',
-                        f'# Try with different ID value',
+                        '# Try with different ID value',
                     ],
                     expected_if_vulnerable="Returns another user's data",
                     expected_if_safe="Returns 403/404 or own data only",
@@ -444,8 +441,8 @@ class LogicFlawReasoner:
                     targets=[js.get("source_url", "")],
                     test_method="Modify client-side flag in requests",
                     test_commands=[
-                        f'# Set flag in request header/cookie/body',
-                        f'curl -sk "TARGET_URL" -H "X-Is-Admin: true" -m 10',
+                        '# Set flag in request header/cookie/body',
+                        'curl -sk "TARGET_URL" -H "X-Is-Admin: true" -m 10',
                     ],
                     expected_if_vulnerable="Backend grants elevated access",
                     expected_if_safe="Backend ignores client-side flag",
@@ -492,7 +489,7 @@ class LogicFlawReasoner:
                         targets=[url],
                         test_method="Send N concurrent requests and check if limit is enforced",
                         test_commands=[
-                            f'# Race condition test: send 20 concurrent requests',
+                            '# Race condition test: send 20 concurrent requests',
                             f'for i in $(seq 1 20); do curl -sk "{url}" -X POST -d "data" & done; wait',
                         ],
                         expected_if_vulnerable="Multiple requests succeed (double-spend, duplicate)",

@@ -188,7 +188,7 @@ def generate_report(chain_results: dict, target: str = "") -> str:
     """生成可读报告"""
     lines = []
     lines.append("=" * 70)
-    lines.append(f"  Exploit-DB Match Report")
+    lines.append("  Exploit-DB Match Report")
     lines.append(f"  Target: {target or 'N/A'}")
     lines.append(f"  Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     lines.append("=" * 70)
@@ -231,7 +231,7 @@ def generate_report(chain_results: dict, target: str = "") -> str:
 
 def generate_attack_script(chain_results: dict, target: str, output_path: str) -> str:
     """生成攻击验证脚本"""
-    lines = ["#!/bin/bash", f"# Auto-generated exploit verification script",
+    lines = ["#!/bin/bash", "# Auto-generated exploit verification script",
              f"# Target: {target}", f"# Generated: {datetime.now().isoformat()}", ""]
 
     lines.append(f'TARGET="{target}"')

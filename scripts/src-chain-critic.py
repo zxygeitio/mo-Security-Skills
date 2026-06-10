@@ -3,7 +3,7 @@
 Rejects low-evidence, duplicate, unsafe, or non-submittable findings before report output.
 """
 from __future__ import annotations
-import argparse, json, re, sys
+import argparse, json, sys
 from pathlib import Path
 
 HIGH_VALUE_TYPES = [

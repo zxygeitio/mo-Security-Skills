@@ -7,7 +7,7 @@ Sploitus漏洞搜索引擎集成
 注意: Sploitus 使用 Cloudflare 保护，直接 API 调用可能返回 403。
 Fallback: 用 browser 工具访问 https://sploitus.com/ 手动搜索。
 """
-import json, sys, os, urllib.request, urllib.parse, urllib.error, ssl
+import json, sys, urllib.request, urllib.parse, urllib.error, ssl
 
 SPLOITUS_API = "https://sploitus.com/search"
 

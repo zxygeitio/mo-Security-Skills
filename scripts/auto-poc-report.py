@@ -12,8 +12,6 @@ Auto PoC Generator & Report Pipeline v1.0
 """
 
 import json
-import os
-import sys
 import subprocess
 import hashlib
 import re

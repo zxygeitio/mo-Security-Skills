@@ -23,12 +23,10 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import subprocess
 import sys
 from collections import defaultdict
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import Any, Optional
 
 SCRIPTS_DIR = Path(__file__).parent
 sys.path.insert(0, str(SCRIPTS_DIR))
@@ -132,7 +130,7 @@ class AssociationAnalyzer:
                     ),
                     test_method="Use token from one service on another service",
                     test_commands=[
-                        f'# Get token from auth service, then use on cross-domain service',
+                        '# Get token from auth service, then use on cross-domain service',
                         f'curl -sk -H "Authorization: Bearer TOKEN" "https://{list(cross_domain)[0]}/api/userinfo"',
                     ],
                     severity="high",
@@ -160,9 +158,9 @@ class AssociationAnalyzer:
                     ),
                     test_method="Use CAS ticket issued for domain A on domain B",
                     test_commands=[
-                        f'# CAS ticket replay across services',
-                        f'# 1. Get ticket for service A',
-                        f'# 2. Use same ticket on service B',
+                        '# CAS ticket replay across services',
+                        '# 1. Get ticket for service A',
+                        '# 2. Use same ticket on service B',
                     ],
                     severity="critical",
                     confidence="medium",
@@ -188,7 +186,7 @@ class AssociationAnalyzer:
                     source="any origin",
                     target=url,
                     trust_type="cors",
-                    evidence=[f"ACAO=* ACAC=true"],
+                    evidence=["ACAO=* ACAC=true"],
                     gap_description=(
                         "Wildcard ACAO with credentials. Any website can read authenticated "
                         "responses from this endpoint. Attacker can steal user data via JS."

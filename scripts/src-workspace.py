@@ -25,15 +25,11 @@ src-workspace.py - 扫描状态持久化管理
 """
 
 import os
-import sys
 import json
-import time
-import hashlib
 import argparse
 from datetime import datetime
 
 
-import os
 WORKSPACE_BASE = os.environ.get('PENTEST_WORKSPACE', '/tmp/vuln_reports')
 
 
@@ -123,13 +119,13 @@ def status(domain):
     print(f"Phase:      {data.get('phase', 'unknown')}")
 
     stats = data.get('stats', {})
-    print(f"\nStats:")
+    print("\nStats:")
     print(f"  Subdomains:   {stats.get('subs_alive', 0)}/{stats.get('subs_total', 0)}")
     print(f"  Endpoints:    {stats.get('endpoints_tested', 0)}")
     print(f"  Vulns found:  {stats.get('vulns_found', 0)}")
 
     # 文件状态
-    print(f"\nFiles:")
+    print("\nFiles:")
     for fname in ['subs.txt', 'alive.txt', 'fingerprints.json', 'vulns.json',
                   'endpoints-tested.json']:
         fpath = os.path.join(ws, fname)
@@ -142,7 +138,7 @@ def status(domain):
     # 漏洞摘要
     vulns = data.get('vulns', [])
     if vulns:
-        print(f"\nVulnerabilities:")
+        print("\nVulnerabilities:")
         severity_count = {}
         for v in vulns:
             sev = v.get('severity', 'unknown')
@@ -151,7 +147,7 @@ def status(domain):
             if sev in severity_count:
                 print(f"  [{sev.upper()}] {severity_count[sev]}")
 
-        print(f"\nDetails:")
+        print("\nDetails:")
         for v in vulns:
             print(f"  [{v.get('severity', '?').upper():8s}] {v.get('description', 'N/A')}")
             print(f"           {v.get('url', 'N/A')}")
@@ -159,7 +155,7 @@ def status(domain):
     # 备注
     notes = data.get('notes', [])
     if notes:
-        print(f"\nNotes:")
+        print("\nNotes:")
         for note in notes[-5:]:
             print(f"  - {note}")
 
@@ -302,7 +298,7 @@ def export_workspace(domain):
     lines.append("")
 
     stats = data.get('stats', {})
-    lines.append(f"统计:")
+    lines.append("统计:")
     lines.append(f"  子域总数: {stats.get('subs_total', 0)}")
     lines.append(f"  存活子域: {stats.get('subs_alive', 0)}")
     lines.append(f"  测试端点: {stats.get('endpoints_tested', 0)}")

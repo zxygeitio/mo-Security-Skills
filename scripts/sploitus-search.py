@@ -4,7 +4,7 @@ Sploitus漏洞搜索引擎集成
 聚合 ExploitDB + Packet Storm + GitHub Security Advisories
 用法: sploitus-search.py <query> [--type exploits|tools] [--limit N]
 """
-import json, sys, os, urllib.request, urllib.parse, urllib.error, ssl
+import json, sys, urllib.request, urllib.parse, urllib.error, ssl
 
 SPLOITUS_API = "https://sploitus.com/search"
 SPLOITUS_EXPLOITS = "https://sploitus.com/exploits"

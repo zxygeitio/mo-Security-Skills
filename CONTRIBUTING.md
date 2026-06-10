@@ -45,9 +45,11 @@ nist_csf:
 5. Regenerate the catalog and validate before committing:
 
    ```bash
-   pip install pyyaml                      # one-time
+   pip install -r requirements-dev.txt     # one-time (pyyaml, pytest, ruff)
    python scripts/build_index.py           # rewrite index.json from frontmatter
    python scripts/validate_skills.py       # check the frontmatter contract
+   ruff check . --select F401,F541,F811,F821,F601,F632,F706,F502  # lint helpers
+   pytest tests/ -q                        # run tooling unit tests
    ```
 
    `index.json` is generated — never hand-edit it. CI runs the validator and

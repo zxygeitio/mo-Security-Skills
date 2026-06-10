@@ -4,9 +4,9 @@ Agent Execution Monitor / Loop Guard
 借鉴 PentAGI v2.0 的 Execution Monitor 机制
 防止 agent 陷入无效循环、管理工具调用预算、记录因果图
 """
-import json, os, sys, time
+import json, os, sys
 from datetime import datetime, timezone
-from collections import Counter, defaultdict
+from collections import Counter
 
 DATA_DIR = "/tmp"
 MONITOR_FILE = os.path.join(DATA_DIR, "hermes-exec-monitor.jsonl")
@@ -88,13 +88,13 @@ def cmd_stats(args):
     tool_counts = Counter(r.get("tool", "?") for r in records)
     target_counts = Counter(r.get("target", "?") for r in records)
     confirmed = [r for r in records if r.get("validation_result") == "confirmed"]
-    print(f"=== Agent Execution Monitor Stats ===")
+    print("=== Agent Execution Monitor Stats ===")
     print(f"Total tool calls: {len(records)}")
     print(f"Confirmed findings: {len(confirmed)}")
-    print(f"\nTool usage:")
+    print("\nTool usage:")
     for tool, count in tool_counts.most_common(15):
         print(f"  {tool}: {count}")
-    print(f"\nTop targets:")
+    print("\nTop targets:")
     for target, count in target_counts.most_common(10):
         print(f"  {target}: {count}")
     mode = args[0] if args else "standard"
@@ -170,11 +170,11 @@ def cmd_summary(args):
     print("=== Task Summary (for context handoff) ===\n")
     print(f"Total actions: {len(records)}\nConfirmed findings: {len(confirmed)}\nPending hypotheses: {len(pending)}")
     if confirmed:
-        print(f"\n--- Confirmed Findings ---")
+        print("\n--- Confirmed Findings ---")
         for r in confirmed:
             print(f"  [{r.get('severity','?')}] {r.get('tool','?')} → {r.get('target','?')}: {r.get('evidence','')}")
     if pending:
-        print(f"\n--- Pending Hypotheses ---")
+        print("\n--- Pending Hypotheses ---")
         for r in pending:
             print(f"  {r.get('hypothesis','')} (via {r.get('tool','?')} on {r.get('target','?')})")
 

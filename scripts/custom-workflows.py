@@ -3,7 +3,6 @@
 自定义工作流模板 - 可根据需求修改
 """
 
-import os
 import sys
 import json
 import subprocess
@@ -78,12 +77,12 @@ class CustomWorkflow:
                     f.write(f"标准错误:\n{result.stderr}\n")
                 
                 if result.returncode == 0:
-                    print(f"  ✓ 成功")
+                    print("  ✓ 成功")
                 else:
                     print(f"  ✗ 失败 (返回码: {result.returncode})")
             
             except subprocess.TimeoutExpired:
-                print(f"  ✗ 超时")
+                print("  ✗ 超时")
                 results.append({
                     'step': step['name'],
                     'command': command,
@@ -103,7 +102,7 @@ class CustomWorkflow:
             f.write(f"# 工作流报告: {self.name}\n\n")
             f.write(f"**执行时间**: {datetime.now()}\n")
             f.write(f"**输出目录**: {output_dir}\n\n")
-            f.write(f"## 步骤结果\n\n")
+            f.write("## 步骤结果\n\n")
             for i, result in enumerate(results, 1):
                 f.write(f"### 步骤 {i}: {result.get('step', '未知')}\n\n")
                 f.write(f"- 命令: `{result.get('command', '')}`\n")
@@ -113,7 +112,7 @@ class CustomWorkflow:
                     f.write(f"- 返回码: {result.get('returncode', '未知')}\n")
                 f.write("\n")
         
-        print(f"\n工作流执行完成")
+        print("\n工作流执行完成")
         print(f"输出目录: {output_dir}")
         print(f"报告文件: {report_file}")
         

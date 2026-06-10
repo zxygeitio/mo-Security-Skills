@@ -12,7 +12,7 @@ import argparse
 import json
 import math
 import re
-from collections import Counter, defaultdict, deque
+from collections import defaultdict, deque
 from pathlib import Path
 from typing import Any
 

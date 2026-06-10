@@ -5,8 +5,6 @@
 
 import sys
 import base64
-import binascii
-import hashlib
 import string
 from collections import Counter
 

@@ -10,6 +10,10 @@ plugins/
 *.clean
 *.orig
 
+# === Test / lint tool caches ===
+.pytest_cache/
+.ruff_cache/
+
 # === Embedded Git Repositories (submodules) ===
 hermes-agent
 skills/ai-development/hermes-agent-self-evolution/source/

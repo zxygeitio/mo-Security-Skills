@@ -18,14 +18,12 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import subprocess
 import sys
 import time
-from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Optional
+from typing import Optional
 
 SCRIPTS_DIR = Path(__file__).parent
 sys.path.insert(0, str(SCRIPTS_DIR))
@@ -386,7 +384,7 @@ class AttackDecisionEngine:
             )
             self.graph.add_evidence(vuln_id, "response", result["stdout"][:1000], "Shiro deleteMe header")
             self.graph.add_evidence(vuln_id, "curl", cmd, "Reproduction command")
-            print(f"    [!] Shiro rememberMe detected")
+            print("    [!] Shiro rememberMe detected")
             return {"phase": "shiro", "domain": domain, "vuln_id": vuln_id}
 
         return None
@@ -496,7 +494,7 @@ class AttackDecisionEngine:
             )
             self.graph.add_evidence(vuln_id, "response", body[:500], ".git/HEAD content")
             self.graph.add_evidence(vuln_id, "curl", cmd, "Reproduction command")
-            print(f"    [!] .git exposed")
+            print("    [!] .git exposed")
             return {"phase": "git_leak", "domain": domain, "vuln_id": vuln_id}
 
         return None

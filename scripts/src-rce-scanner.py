@@ -21,8 +21,6 @@ RCE Scanner - 命令注入/SSTI/XXE/反序列化快速检测
 
 import argparse
 import hashlib
-import os
-import re
 import subprocess
 import sys
 import time
@@ -34,7 +32,7 @@ def req(url, method="GET", data=None, cookie=None, headers=None, timeout=10, bod
     cmd = f"curl -sk --max-time {timeout} -D /tmp/rce_hdr.txt -o /tmp/rce_body.txt -w '%{{http_code}}|%{{time_total}}' "
     if method == "POST":
         if body:
-            cmd += f"-X POST --data-binary @- "
+            cmd += "-X POST --data-binary @- "
         elif data:
             cmd += f"-X POST -d '{data}' "
     if cookie:
@@ -319,7 +317,7 @@ def main():
     cookie = args.cookie
     test_type = args.type
 
-    print(f"[*] RCE Scanner")
+    print("[*] RCE Scanner")
     print(f"[*] 目标: {url}")
     print(f"[*] 测试类型: {test_type}")
     print()
@@ -362,7 +360,7 @@ def main():
                     print(f"      证据: {f['evidence'][:80]}")
                 all_findings.extend(findings)
             else:
-                print(f"  [-] 未检测到")
+                print("  [-] 未检测到")
 
     # Summary
     print()

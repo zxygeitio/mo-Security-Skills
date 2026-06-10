@@ -22,7 +22,6 @@ edu-full-scan.py - 教育SRC全自动化扫描主控脚本
 
 import subprocess
 import sys
-import os
 import json
 import time
 import argparse
@@ -323,14 +322,14 @@ def main():
             phase_js_scan(domain)
 
         if 'deep_dive' in phases[start_idx:] and not args.fast:
-            print(f"\n[*] Deep dive phase requires manual Hermes agent intervention")
-            print(f"    Run: python3 auto-vuln-scan.py <high-value-url> --all --enum")
+            print("\n[*] Deep dive phase requires manual Hermes agent intervention")
+            print("    Run: python3 auto-vuln-scan.py <high-value-url> --all --enum")
 
         if 'report' in phases[start_idx:]:
             phase_report(domain)
 
     except KeyboardInterrupt:
-        print(f"\n[!] Interrupted. Use --resume to continue.")
+        print("\n[!] Interrupted. Use --resume to continue.")
 
     elapsed = time.time() - start_time
     print(f"\n{'='*60}")

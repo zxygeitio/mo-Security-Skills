@@ -152,14 +152,14 @@ def cmd_stats(args):
     total = conn.execute("SELECT COUNT(*) as c FROM tool_runs").fetchone()['c']
     successes = conn.execute("SELECT COUNT(*) as c FROM tool_runs WHERE success=1").fetchone()['c']
     
-    print(f"=== Tool Success Memory Stats ===")
+    print("=== Tool Success Memory Stats ===")
     print(f"Total records: {total}")
     print(f"Successes: {successes}")
     if total > 0:
         print(f"Overall success rate: {100*successes/total:.1f}%")
     
     # Top tools by success rate
-    print(f"\n--- Top Tools by Success Rate (min 3 runs) ---")
+    print("\n--- Top Tools by Success Rate (min 3 runs) ---")
     rows = conn.execute("""
         SELECT tool, COUNT(*) as runs, SUM(success) as wins,
                ROUND(100.0 * SUM(success) / COUNT(*), 1) as rate
@@ -173,7 +173,7 @@ def cmd_stats(args):
         print(f"  {r['tool']}: {r['rate']}% ({r['wins']}/{r['runs']})")
     
     # Top target types
-    print(f"\n--- Target Type Distribution ---")
+    print("\n--- Target Type Distribution ---")
     rows = conn.execute("""
         SELECT target_type, COUNT(*) as c, SUM(success) as s
         FROM tool_runs

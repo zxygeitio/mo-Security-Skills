@@ -28,7 +28,6 @@ import sys
 from collections import defaultdict
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
-from typing import Any
 
 SCRIPTS_DIR = Path(__file__).parent
 sys.path.insert(0, str(SCRIPTS_DIR))
@@ -613,7 +612,7 @@ def main():
         for r in model.reasoning:
             print(f"  {r}")
 
-        print(f"\n=== Top Attack Surface ===")
+        print("\n=== Top Attack Surface ===")
         for point in model.attack_surface[:10]:
             sev = point.get("severity", "info")
             icon = {"critical": "🔴", "high": "🟠", "medium": "🟡"}.get(sev, "⚪")

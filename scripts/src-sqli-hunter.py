@@ -18,7 +18,6 @@ SQLi Hunter - SQL注入快速检测与验证
 
 import argparse
 import hashlib
-import os
 import re
 import subprocess
 import sys
@@ -286,7 +285,7 @@ def main():
     cookie = args.cookie
     headers = args.header
 
-    print(f"[*] SQLi Hunter")
+    print("[*] SQLi Hunter")
     print(f"[*] 目标: {url}")
     print(f"[*] 方法: {method}")
     print()
@@ -307,40 +306,40 @@ def main():
         print(f"\n[*] 测试参数: {param}")
 
         # 1. Error-based
-        print(f"  [1/4] 报错注入...")
+        print("  [1/4] 报错注入...")
         findings = test_error_based(url, param, method, data, cookie)
         if findings:
             print(f"  [!] 报错注入: {findings[0]['desc']} → {findings[0]['evidence'][:50]}")
             all_findings.extend(findings)
             continue
-        print(f"  [-] 未检测到")
+        print("  [-] 未检测到")
 
         # 2. Boolean-based
-        print(f"  [2/4] 布尔盲注...")
+        print("  [2/4] 布尔盲注...")
         findings = test_boolean_based(url, param, method, data, cookie)
         if findings:
             print(f"  [!] 布尔盲注: True={findings[0]['true_len']}B, False={findings[0]['false_len']}B, Baseline={findings[0]['baseline_len']}B")
             all_findings.extend(findings)
             continue
-        print(f"  [-] 未检测到")
+        print("  [-] 未检测到")
 
         # 3. Time-based
-        print(f"  [3/4] 时间盲注...")
+        print("  [3/4] 时间盲注...")
         findings = test_time_based(url, param, method, data, cookie)
         if findings:
             print(f"  [!] 时间盲注: {findings[0]['desc']} 延迟{findings[0]['actual_delay']}s(预期{findings[0]['expected_delay']}s)")
             all_findings.extend(findings)
             continue
-        print(f"  [-] 未检测到")
+        print("  [-] 未检测到")
 
         # 4. UNION-based
-        print(f"  [4/4] UNION注入...")
+        print("  [4/4] UNION注入...")
         findings = test_union_based(url, param, method, data, cookie)
         if findings:
             print(f"  [!] UNION注入: {findings[0]['columns']}列")
             all_findings.extend(findings)
             continue
-        print(f"  [-] 未检测到")
+        print("  [-] 未检测到")
 
     # Summary
     print()

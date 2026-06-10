@@ -17,11 +17,9 @@ import os
 import sys
 import subprocess
 import sqlite3
-import hashlib
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from collections import defaultdict
 import argparse
 import re
 
@@ -548,7 +546,7 @@ class AttackRouter:
                             f.write(f"Error:\n{proc.stderr}\n")
                         executed += 1
                     except subprocess.TimeoutExpired:
-                        print(f"    [!] Timeout after 60s")
+                        print("    [!] Timeout after 60s")
                         skipped += 1
                     except Exception as e:
                         print(f"    [!] Error: {e}")
@@ -583,7 +581,7 @@ class AttackRouter:
 
         waf_name = result["waf"] if result["confidence"] > 40 else "none"
         strategy = self.waf_adapter.get_request_strategy(waf_name)
-        print(f"\n  Request Strategy:")
+        print("\n  Request Strategy:")
         print(f"    Delay: {strategy['delay_ms']}ms")
         print(f"    Batch size: {strategy['batch_size']}")
         print(f"    Rotate UA: {strategy['rotate_ua']}")
@@ -654,14 +652,14 @@ def main():
         print(f"  QUICK FINGERPRINT: {args.target}")
         print(f"{'='*50}")
         print(f"  Hosts: {result['hosts']}")
-        print(f"  Tech Stack:")
+        print("  Tech Stack:")
         for t in result['tech_stack']:
             print(f"    {t['type']}: {t['value']}")
         waf = result.get('waf', {})
         if isinstance(waf, dict) and waf.get('waf') != 'none':
             print(f"  WAF: {waf['waf']} (confidence: {waf['confidence']}%)")
         else:
-            print(f"  WAF: None detected")
+            print("  WAF: None detected")
         print(f"  Recommended Attacks: {', '.join(result['recommended_attacks'])}")
         if result.get('skip_reasons'):
             for r in result['skip_reasons']:
@@ -689,11 +687,11 @@ def main():
 
         # For full mode, also run nmap/httpx
         if args.mode in ("full", "stealth"):
-            print(f"\n[*] Phase 2: Port scanning...")
+            print("\n[*] Phase 2: Port scanning...")
             nmap_out = Path(args.outdir) / "nmap_quick.xml"
             nmap_cmd = f"nmap -sV -T4 --top-ports 1000 -oX {nmap_out} {args.target}"
             print(f"    Cmd: {nmap_cmd}")
-            print(f"    (Run manually or via HexStrike MCP)")
+            print("    (Run manually or via HexStrike MCP)")
 
         print(f"\n[+] Scan plan saved to {args.outdir}/")
 

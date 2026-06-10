@@ -19,15 +19,11 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import subprocess
 import sys
-import tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
 
 # Import graph engine
 SCRIPTS_DIR = Path(__file__).parent

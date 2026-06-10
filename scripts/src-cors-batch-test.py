@@ -14,12 +14,10 @@ SRC Batch CORS Test - 批量CORS/API测试
 """
 
 import argparse
-import json
 import os
 import re
 import subprocess
 import sys
-import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
@@ -195,7 +193,7 @@ def main():
     # Test auth bypass
     auth_vulns = []
     if args.auth:
-        print(f"[*] 批量认证绕过测试...")
+        print("[*] 批量认证绕过测试...")
         with ThreadPoolExecutor(max_workers=10) as ex:
             futures = {ex.submit(test_auth_bypass, url, ep): ep for ep in endpoints}
             for f in as_completed(futures):

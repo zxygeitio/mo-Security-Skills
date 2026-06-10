@@ -26,8 +26,6 @@ import subprocess
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from pathlib import Path
-from urllib.parse import urlparse
 
 # ─── 高价值指纹模式库 ───────────────────────────────────────────────
 FINGERPRINT_MAP = {

@@ -13,13 +13,10 @@ auto-vuln-scan.py - 指纹→漏洞自动映射扫描器
 """
 
 import subprocess
-import sys
 import os
 import re
 import json
-import time
 import argparse
-from concurrent.futures import ThreadPoolExecutor, as_completed
 try:
     import httpx
 except ImportError:
@@ -559,7 +556,7 @@ def scan_target(base_url, timeout=6, test_all=False, do_enum=False):
         print(f"    Server: {headers.split('Server:')[1].split(chr(10))[0].strip() if 'Server:' in headers else 'unknown'}")
         return []
 
-    print(f"[+] Fingerprint matches:")
+    print("[+] Fingerprint matches:")
     for fid, name, score, details in matches:
         print(f"    {name} (score={score}): {', '.join(details)}")
 

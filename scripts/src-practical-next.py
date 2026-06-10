@@ -58,7 +58,6 @@ PATH_WEIGHTS = {
     "workflow": 35,
     "pay": 40,
     "file": 35,
-    "upload": 55,
     "config": 40,
     "env": 40,
     "debug": 45,
@@ -255,7 +254,7 @@ def main() -> int:
 
     # v2.0: Tier distribution
     if args.tiers:
-        lines.append(f"\n## Tier Distribution\n")
+        lines.append("\n## Tier Distribution\n")
         for tier in ["P0", "P1", "P2", "SKIP"]:
             lines.append(f"- {tier}: {tier_counts.get(tier, 0)} URLs\n")
 

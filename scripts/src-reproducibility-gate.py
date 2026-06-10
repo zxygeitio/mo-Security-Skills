@@ -21,14 +21,10 @@ import argparse
 import csv
 import hashlib
 import json
-import os
 import re
-import shlex
 import subprocess
-import sys
 import time
 from pathlib import Path
-from urllib.parse import urlparse
 
 # ─── 低价值发现模式 (单独不构成可报告漏洞) ─────────────────────────
 LOW_VALUE_PATTERNS = [
@@ -411,7 +407,7 @@ def main() -> int:
                 print(f"REJECT: PoC failed - {poc_result['error']}")
                 return 2
             if not poc_result["matches_expected"]:
-                print(f"REJECT: PoC output mismatch")
+                print("REJECT: PoC output mismatch")
                 print(f"Expected pattern: {expected}")
                 print(f"Actual output: {poc_result['output'][:200]}")
                 return 2

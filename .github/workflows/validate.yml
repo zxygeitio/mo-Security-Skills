@@ -17,7 +17,13 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install pyyaml
+        run: pip install pyyaml pytest ruff
+
+      - name: Lint helpers for real bugs (ruff)
+        run: ruff check . --select F401,F541,F811,F821,F601,F632,F706,F502
+
+      - name: Run unit tests
+        run: pytest tests/ -q
 
       - name: Validate skill frontmatter
         run: python scripts/validate_skills.py

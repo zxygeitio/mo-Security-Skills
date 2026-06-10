@@ -326,7 +326,7 @@ def format_report(findings, routes=None):
     lines = []
     total = sum(len(v) for v in findings.values())
 
-    lines.append(f"JS安全分析报告")
+    lines.append("JS安全分析报告")
     lines.append(f"{'='*60}")
     lines.append(f"总发现: {total}")
     lines.append("")

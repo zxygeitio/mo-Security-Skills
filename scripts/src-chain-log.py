@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Append structured records to an authorized SRC chain workspace."""
 from __future__ import annotations
-import argparse, hashlib, json, os, subprocess, sys, time, uuid
+import argparse, hashlib, json, time, uuid
 from pathlib import Path
 
 KINDS = {

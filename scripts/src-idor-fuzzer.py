@@ -18,8 +18,6 @@ IDOR Fuzzer - IDOR/越权系统化枚举
 
 import argparse
 import hashlib
-import json
-import os
 import re
 import subprocess
 import sys
@@ -130,9 +128,10 @@ def test_idor_param(url, param, original_value, method="GET", data=None, cookie=
         noauth_differs = noauth_hash != auth_hash
         diffauth_differs = diffauth_hash != auth_hash
         noauth_returns_data = noauth_size > 100 and noauth_hash != hashlib.md5(b'').hexdigest()[:16]
+        diffauth_returns_data = diffauth_size > 100 and diffauth_hash != hashlib.md5(b'').hexdigest()[:16]
 
         # IDOR without auth (most critical)
-        if is_different_id and has_data and noauth_returns_data and noauth_hash != noauth_hash:
+        if is_different_id and has_data and noauth_returns_data and noauth_differs:
             # Check if response looks like real data (not error)
             if not any(x in noauth_body.lower() for x in ['error', 'unauthorized', 'forbidden', 'not found', '401', '403', 'login']):
                 results.append({
@@ -208,7 +207,7 @@ def main():
     method = args.method.upper()
     data = args.data
 
-    print(f"[*] IDOR Fuzzer")
+    print("[*] IDOR Fuzzer")
     print(f"[*] 目标: {url}")
     print()
 
@@ -241,11 +240,11 @@ def main():
                 print(f"  [!] {f['type']}: {f['desc']}")
                 all_findings.extend(findings)
         else:
-            print(f"  [-] 未检测到IDOR")
+            print("  [-] 未检测到IDOR")
 
         # Horizontal escalation (if two accounts provided)
         if args.cookie_b or args.token_b:
-            print(f"  [水平越权测试]...")
+            print("  [水平越权测试]...")
             findings = test_horizontal_escalation(url, param, orig_value, method, data,
                                                     args.cookie, args.cookie_b,
                                                     args.token, args.token_b)
@@ -254,7 +253,7 @@ def main():
                     print(f"  [!] {f['type']}: {f['desc']}")
                     all_findings.extend(findings)
             else:
-                print(f"  [-] 未检测到水平越权")
+                print("  [-] 未检测到水平越权")
 
     # Summary
     print()

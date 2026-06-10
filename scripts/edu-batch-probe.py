@@ -15,7 +15,6 @@ edu-batch-probe.py - 批量子域探测脚本
 
 import subprocess
 import sys
-import os
 import time
 import json
 import argparse
@@ -246,7 +245,7 @@ def main():
     codes = {}
     for r in filtered:
         codes[r[2]] = codes.get(r[2], 0) + 1
-    print(f"\n[*] Status code distribution:")
+    print("\n[*] Status code distribution:")
     for code in sorted(codes.keys()):
         print(f"    {code}: {codes[code]}")
 

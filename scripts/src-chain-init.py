@@ -4,7 +4,7 @@ Creates JSONL evidence stores for scope, assets, hypotheses, evidence, validatio
 cleanup and tool_calls. This is a control/evidence framework, not an exploit tool.
 """
 from __future__ import annotations
-import argparse, json, os, time, uuid
+import argparse, json, time, uuid
 from pathlib import Path
 
 FILES = [

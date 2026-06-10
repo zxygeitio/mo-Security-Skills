@@ -20,15 +20,11 @@ Target Graph Engine v1.0 — 统一目标图谱引擎
 """
 
 import json
-import os
-import sys
 import sqlite3
 import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
-from collections import defaultdict
 import argparse
-import re
 
 # === Severity scoring ===
 SEVERITY_SCORE = {"critical": 100, "high": 75, "medium": 50, "low": 25, "info": 5}
@@ -758,7 +754,7 @@ class TargetGraph:
         elif fmt == "md":
             stats = self.get_stats()
             lines = [
-                f"# Target Graph Report",
+                "# Target Graph Report",
                 f"Generated: {self._now()}",
                 "",
                 "## Summary",
@@ -820,7 +816,7 @@ class TargetGraph:
         """Print statistics."""
         stats = self.get_stats()
         print(f"\n{'='*50}")
-        print(f"  TARGET GRAPH STATISTICS")
+        print("  TARGET GRAPH STATISTICS")
         print(f"{'='*50}")
         print(f"  Hosts:           {stats.get('hosts', 0)}")
         print(f"  Open Ports:      {stats.get('ports', 0)}")
@@ -833,19 +829,19 @@ class TargetGraph:
         print(f"  Evidence:        {stats.get('evidence', 0)}")
 
         if stats.get('vulns_by_severity'):
-            print(f"\n  Vulns by Severity:")
+            print("\n  Vulns by Severity:")
             for sev, count in sorted(stats['vulns_by_severity'].items(),
                                       key=lambda x: SEVERITY_SCORE.get(x[0], 0), reverse=True):
                 print(f"    {sev:10s}: {count}")
 
         if stats.get('paths_by_type'):
-            print(f"\n  Attack Paths by Type:")
+            print("\n  Attack Paths by Type:")
             for atype, count in sorted(stats['paths_by_type'].items(),
                                         key=lambda x: SURFACE_WEIGHT.get(x[0], 0), reverse=True):
                 print(f"    {atype:15s}: {count}")
 
         if stats.get('top5'):
-            print(f"\n  Top 5 Priority:")
+            print("\n  Top 5 Priority:")
             for item in stats['top5']:
                 print(f"    [{item[4]:.0f}] {item[0]}:{item[1]} - {item[2]}: {item[3]}")
 

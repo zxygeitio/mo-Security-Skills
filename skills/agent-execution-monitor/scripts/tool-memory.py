@@ -6,7 +6,7 @@
 
 数据库: /root/.hermes/data/tool_success.db (SQLite)
 """
-import json, os, sys, sqlite3
+import os, sys, sqlite3
 from datetime import datetime, timezone
 
 DB_PATH = "/root/.hermes/data/tool_success.db"
@@ -86,12 +86,12 @@ def cmd_stats(args):
     successes = conn.execute("SELECT COUNT(*) as c FROM tool_runs WHERE success=1").fetchone()['c']
     print(f"=== Tool Success Memory Stats ===\nTotal: {total}, Successes: {successes}")
     if total > 0: print(f"Rate: {100*successes/total:.1f}%")
-    print(f"\n--- Top Tools (min 3 runs) ---")
+    print("\n--- Top Tools (min 3 runs) ---")
     for r in conn.execute("""SELECT tool, COUNT(*) as runs, SUM(success) as wins,
         ROUND(100.0 * SUM(success) / COUNT(*), 1) as rate FROM tool_runs
         GROUP BY tool HAVING runs >= 3 ORDER BY rate DESC LIMIT 10""").fetchall():
         print(f"  {r['tool']}: {r['rate']}% ({r['wins']}/{r['runs']})")
-    print(f"\n--- Target Type Distribution ---")
+    print("\n--- Target Type Distribution ---")
     for r in conn.execute("SELECT target_type, COUNT(*) as c, SUM(success) as s FROM tool_runs GROUP BY target_type ORDER BY c DESC LIMIT 10").fetchall():
         print(f"  {r['target_type']}: {r['c']} runs, {r['s']} successes")
     conn.close()

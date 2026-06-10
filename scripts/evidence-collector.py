@@ -16,14 +16,11 @@ Evidence Collector v3.0 — 统一证据采集与关联
 from __future__ import annotations
 
 import argparse
-import json
-import os
-import re
 import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Optional
+from typing import Optional
 
 SCRIPTS_DIR = Path(__file__).parent
 sys.path.insert(0, str(SCRIPTS_DIR))
@@ -173,7 +170,7 @@ URL: {domain}
 
     def _format_markdown(self, vulns: list) -> str:
         """Format as Markdown report."""
-        lines = [f"# 渗透测试报告", f"", f"生成时间: {datetime.now(timezone.utc).isoformat()}", f"漏洞总数: {len(vulns)}", ""]
+        lines = ["# 渗透测试报告", "", f"生成时间: {datetime.now(timezone.utc).isoformat()}", f"漏洞总数: {len(vulns)}", ""]
 
         # Severity summary
         severity_count = {}
