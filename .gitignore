@@ -5,6 +5,11 @@
 # === Plugins State ===
 plugins/
 
+# === Backup / scratch copies of skill files (never commit) ===
+*.bak
+*.clean
+*.orig
+
 # === Embedded Git Repositories (submodules) ===
 hermes-agent
 skills/ai-development/hermes-agent-self-evolution/source/

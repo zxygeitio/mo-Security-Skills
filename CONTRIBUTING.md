@@ -42,7 +42,19 @@ nist_csf:
    - `assets/` — Templates, checklists
    - `LICENSE` — Apache 2.0 (copy from root)
 
-5. Submit a PR with title: `Add skill: your-skill-name`
+5. Regenerate the catalog and validate before committing:
+
+   ```bash
+   pip install pyyaml                      # one-time
+   python scripts/build_index.py           # rewrite index.json from frontmatter
+   python scripts/validate_skills.py       # check the frontmatter contract
+   ```
+
+   `index.json` is generated — never hand-edit it. CI runs the validator and
+   `python scripts/build_index.py --check` on every PR, so a stale or invalid
+   index will fail the build.
+
+6. Submit a PR with title: `Add skill: your-skill-name`
 
 ## Skill Quality Checklist
 

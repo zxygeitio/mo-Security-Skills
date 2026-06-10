@@ -1,6 +1,8 @@
 ---
 name: penetration-testing-learning
-description: 渗透测试系统学习路径
+description: >-
+  渗透测试系统学习路径 — 聚合侦察、漏洞利用、CTF、报告等子技能的学习型 bundle，
+  强调实际 CVE/exploit 验证而非版本指纹匹配，并衔接 NISP/CISP/OSCP 知识体系。
 ---
 # Penetration Testing Learning Path
 

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/🛡️_Skills-40-orange?style=for-the-badge&logo=shield&logoColor=white" alt="Skills"></a>
+  <a href="#"><img src="https://img.shields.io/badge/🛡️_Skills-63-orange?style=for-the-badge&logo=shield&logoColor=white" alt="Skills"></a>
   <a href="#"><img src="https://img.shields.io/badge/🎯_Subdomains-11-red?style=for-the-badge&logo=target&logoColor=white" alt="Subdomains"></a>
   <a href="#"><img src="https://img.shields.io/badge/📁_Files-1300+-blue?style=for-the-badge&logo=files&logoColor=white" alt="Files"></a>
   <a href="#"><img src="https://img.shields.io/badge/⚔️_ATT%26CK-45+_Techniques-green?style=for-the-badge&logo=mitre&logoColor=white" alt="ATT&CK"></a>
@@ -13,7 +13,7 @@
 
 <p align="center">
   <b>🔥 Battle-tested offensive security skills — works with ANY AI agent 🔥</b><br>
-  <i>40 production-grade skills · 11 security subdomains · agentskills.io standard</i><br>
+  <i>63 production-grade skills · 11 security subdomains · agentskills.io standard</i><br>
   <i>Compatible with Claude · GPT · Gemini · Llama · Hermes · LangChain · CrewAI · any agent</i>
 </p>
 
@@ -553,7 +553,7 @@ JSON report with findings, evidence, and MITRE ATT&CK mapping.
 <table>
 <tr>
 <td align="center" width="20%">
-<img src="https://img.shields.io/badge/-40-ff6b35?style=flat" width="80"><br><b>Skills</b>
+<img src="https://img.shields.io/badge/-63-ff6b35?style=flat" width="80"><br><b>Skills</b>
 </td>
 <td align="center" width="20%">
 <img src="https://img.shields.io/badge/-11-ff2d2d?style=flat" width="80"><br><b>Subdomains</b>
@@ -591,6 +591,16 @@ JSON report with findings, evidence, and MITRE ATT&CK mapping.
 ## 🤝 Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
+
+**Maintenance tooling** (`scripts/`, requires `pip install pyyaml`):
+
+| Command | Purpose |
+|:--------|:--------|
+| `python scripts/build_index.py` | Regenerate `index.json` from every top-level SKILL.md frontmatter (never hand-edit the index) |
+| `python scripts/build_index.py --check` | CI gate — fail if `index.json` is stale |
+| `python scripts/validate_skills.py` | Validate the frontmatter contract (name ↔ directory, real descriptions, no leaked private IPs); warns on missing discovery tags |
+
+Both checks run automatically on every push and PR via GitHub Actions.
 
 ```
   ┌──────────────────────────────────────────────┐
