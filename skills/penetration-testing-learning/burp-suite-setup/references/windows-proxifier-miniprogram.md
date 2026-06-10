@@ -32,7 +32,7 @@ timeout 20 tcpdump -i eth0 -nn 'tcp port 8080' -c 20
 
 Proxy Server 里配置 Kali 代理：
 
-- Address: Kali IP，例如 `192.168.110.137`
+- Address: Kali IP，例如 `192.0.2.137`
 - Port: `8080`
 - Protocol: `HTTPS`（不通时再试 HTTP）
 - 不需要认证
@@ -47,7 +47,7 @@ Proxy Server 里配置 Kali 代理：
 
 2. `Kali Direct`
 - Applications: `Any`
-- Target hosts: Kali IP，例如 `192.168.110.137`
+- Target hosts: Kali IP，例如 `192.0.2.137`
 - Target ports: `Any`
 - Action: `Direct`
 

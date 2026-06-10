@@ -134,13 +134,13 @@ sudo ip route del 220.0.0.0/8 dev tun0
 **Diagnosis**:
 ```bash
 nslookup api.minimax.chat  # check if it resolves to 198.18.x
-ip route get 198.18.0.183  # should show "via 192.168.110.2 dev eth0", NOT tun0
+ip route get 198.18.0.183  # should show "via 192.0.2.2 dev eth0", NOT tun0
 curl -I api.minimax.chat  # will fail/timeout if routed through VPN
 ```
 
 **Fix**: Ensure 198.18.0.0/15 routes through local gateway, not VPN:
 ```
-route 198.18.0.0 255.255.0.0 192.168.110.2
+route 198.18.0.0 255.255.0.0 192.0.2.2
 ```
 
 **ROT VPN Infrastructure Fingerprint (2026-04-23)**:
@@ -212,7 +212,7 @@ sleep 8 && ip addr show tun0
 
 ### 配置验证
 - VPN隧道: 192.168.246.57 → 192.168.246.58 ✓
-- 默认路由: 192.168.110.2 (本地，未被VPN劫持) ✓
+- 默认路由: 192.0.2.2 (本地，未被VPN劫持) ✓
 - 大模型API: 可达 (HTTP 403 = 正常，缺认证) ✓
 - 198.18.x: 走本地网关 (保护API) ✓
 

@@ -29,7 +29,7 @@ curl -x http://127.0.0.1:8080 http://httpbin.org/ip
 
 Proxy Server：
 
-- Address: Kali IP，例如 `192.168.110.137`
+- Address: Kali IP，例如 `192.0.2.137`
 - Port: `8080`
 - Protocol: `HTTPS`；不稳定时可试 `HTTP`
 - Authentication: none
@@ -46,7 +46,7 @@ Proxy Server：
 2. Kali Direct
 
 - Applications: Any
-- Target hosts: Kali IP，例如 `192.168.110.137`
+- Target hosts: Kali IP，例如 `192.0.2.137`
 - Target ports: Any
 - Action: Direct
 
@@ -68,7 +68,7 @@ Proxy Server：
 
 ## 常见配置错误
 
-- 不要把 `192.168.110.137` 写进小程序规则的 Target hosts。Target hosts 是“目标业务网站”，不是代理服务器。代理服务器只配置在 Action/Proxy Server 中。
+- 不要把 `192.0.2.137` 写进小程序规则的 Target hosts。Target hosts 是“目标业务网站”，不是代理服务器。代理服务器只配置在 Action/Proxy Server 中。
 - Default 不要设为 Proxy，否则 Edge、Office、系统更新、QQ 本地端口都会污染 Burp。
 - `127.0.0.1:*` 必须 Direct，否则微信/QQ本地检活端口如 `9210-9219` 会被错误代理。
 - 端口分隔必须用英文半角分号：`80;443;8080;8443`，不要用中文分号 `；`。

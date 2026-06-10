@@ -13,7 +13,7 @@ description: >-
 - **实际危害**: 必须能证明真实危害，不是理论上的漏洞
 
 ## 环境信息
-- Kali 2026.1, IP: 192.168.110.137, Docker运行中
+- Kali 2026.1, IP: 192.0.2.137, Docker运行中
 - 项目: PentAGI (~/pentagi/), HexStrike AI (~/hexstrike-ai/)
 
 ## 学习计划

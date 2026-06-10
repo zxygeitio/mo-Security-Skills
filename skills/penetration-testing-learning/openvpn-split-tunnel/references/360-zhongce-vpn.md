@@ -60,7 +60,7 @@ ping -c 2 -W 2 10.9.0.1
 Expected good state:
 
 - `tun0` receives a `10.9.x.x/16` address.
-- Default route remains local, e.g. `default via 192.168.110.2 dev eth0`.
+- Default route remains local, e.g. `default via 192.0.2.2 dev eth0`.
 - Anthropic/API endpoint returns a fast HTTP status, not timeout.
 - Public internet still responds.
 - VPN gateway `10.9.0.1` is reachable.

@@ -6,7 +6,7 @@ Use when the target app runs on the user's Windows host and Burp Suite runs on K
 
 Windows Proxifier -> Kali LAN IP:8080 -> socat -> Burp 127.0.0.1:8080
 
-Example Kali IP seen in this environment: `192.168.110.137`.
+Example Kali IP seen in this environment: `192.0.2.137`.
 
 ## Kali side
 
@@ -28,7 +28,7 @@ ss -tlnp | grep "$KALI_IP:8080"
 ## Windows Proxifier rules
 
 Proxy server:
-- Address: Kali LAN IP, e.g. `192.168.110.137`
+- Address: Kali LAN IP, e.g. `192.0.2.137`
 - Port: `8080`
 - Protocol: HTTPS usually works for HTTP CONNECT proxying; HTTP can also be tested if HTTPS fails.
 
@@ -42,7 +42,7 @@ Rules must be ordered top to bottom:
 
 2. Kali Direct
 - Applications: Any
-- Target hosts: Kali LAN IP, e.g. `192.168.110.137`
+- Target hosts: Kali LAN IP, e.g. `192.0.2.137`
 - Target ports: Any
 - Action: Direct
 

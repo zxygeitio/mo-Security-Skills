@@ -251,7 +251,7 @@ curl -x "http://$KALI_IP:8080" http://httpbin.org/ip
 
 Proxy Server 里配置 Kali：
 
-- Address: `KALI_IP`（例如 `192.168.110.137`）
+- Address: `KALI_IP`（例如 `192.0.2.137`）
 - Port: `8080`
 - Protocol: `HTTPS`（不通再试 HTTP）
 - Authentication: none
@@ -396,7 +396,7 @@ ss -tlnp | grep "$KALI_IP:8080"
 
 2. `Kali Direct`
    - Applications: `Any`
-   - Target Hosts: Kali IP，例如 `192.168.110.137`
+   - Target Hosts: Kali IP，例如 `192.0.2.137`
    - Target Ports: `Any`
    - Action: `Direct`
 
@@ -565,7 +565,7 @@ reboot
 
 手机 WiFi → 修改网络 → 高级选项:
 - 代理: 手动
-- 主机名: Kali IP (如 192.168.110.137)
+- 主机名: Kali IP (如 192.0.2.137)
 - 端口: 8080
 
 ## 十五、开始抓包

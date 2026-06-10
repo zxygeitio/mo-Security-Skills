@@ -17,7 +17,7 @@ Use this when the user's Windows machine runs WeChat/QQ mini programs, while Bur
    - Action: Direct
 2. `Kali Direct`
    - Applications: Any
-   - Target hosts: Kali proxy IP, e.g. `192.168.110.137`
+   - Target hosts: Kali proxy IP, e.g. `192.0.2.137`
    - Target ports: Any
    - Action: Direct
 3. `WeChat MiniProgram to Burp`
