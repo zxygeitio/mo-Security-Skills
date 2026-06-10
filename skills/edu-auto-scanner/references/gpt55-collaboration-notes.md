@@ -23,7 +23,7 @@ delegate_task的model override不生效，需直接用Python调用API。
 ## GPT-5.5调用模板
 ```python
 import yaml, json, urllib.request, ssl
-with open('~/.agent/config.yaml') as f:
+with open('/root/.hermes/config.yaml') as f:
     cfg = yaml.safe_load(f)
 gpt = [p for p in cfg.get('custom_providers', []) if p.get('name') == 'gpt-5.5'][0]
 url = gpt['base_url'] + '/chat/completions'

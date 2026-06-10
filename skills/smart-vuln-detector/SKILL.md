@@ -1,21 +1,8 @@
 ---
 name: smart-vuln-detector
-description: >-
-  智能漏洞检测框架 - 基于指纹的漏洞特征匹配、自动选择检测方式
-domain: cybersecurity
-subdomain: vulnerability-management
-tags:
-- security
-version: '1.0'
-author: zxygeitio
-license: Apache-2.0
-mitre_attack:
-- T1190
-- T1595
-nist_csf:
-- DE.CM-01
-- ID.RA-01
+description: 智能漏洞检测框架 - 基于指纹的漏洞特征匹配、自动选择检测方式
 ---
+
 # Smart Vulnerability Detector
 
 智能漏洞检测框架，根据服务指纹自动选择合适的检测方式。

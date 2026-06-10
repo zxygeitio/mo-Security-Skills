@@ -1,19 +1,11 @@
 ---
 name: agent-task-planner
-description: >-
-  智能任务规划器 — 复杂渗透任务执行前自动分解为3-7步结构化计划，提升成功率。借鉴PentAGI的Intelligent Task Planning。
-domain: cybersecurity
-subdomain: soc-operations
-tags:
-- security
-version: '1.0'
-author: zxygeitio
-license: Apache-2.0
-mitre_attack:
-- T1595
-nist_csf:
-- ID.RA-01
+description: "智能任务规划器 — 复杂渗透任务执行前自动分解为3-7步结构化计划，提升成功率。借鉴PentAGI的Intelligent Task Planning。"
+category: ai-development
+created_by: agent
+related_skills: [agent-execution-monitor, global-control]
 ---
+
 # Agent Task Planner / 智能任务规划
 
 ## 触发条件
@@ -124,7 +116,7 @@ Step 5: PERSIST + EXFIL — 持久化 + 数据
 5. **超时控制**：单步超过预期时间 2x 时评估是否继续
 6. **Loop Guard 集成**：每步自动启用 agent-execution-monitor
 
-## 与 the AI agent 集成
+## 与 Hermes 集成
 
 在 `global-control` 的 SRC 任务流程中，Step 3（指纹→漏洞映射）前插入规划步骤：
 

@@ -1,33 +1,33 @@
 # Agent Execution Monitor — 使用模式
 
 ## 脚本位置
-`~/.agent/scripts/agent-exec-monitor.py`
+`/root/.hermes/scripts/agent-exec-monitor.py`
 
 ## 典型工作流
 
 ### SRC 任务开始
 ```bash
-/usr/bin/python3 ~/.agent/scripts/agent-exec-monitor.py reset
+/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py reset
 ```
 
 ### 每次工具调用后
 ```bash
-/usr/bin/python3 ~/.agent/scripts/agent-exec-monitor.py log nuclei example.com "CVE-2024-1234 matched" "RCE via deserialization"
+/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py log nuclei example.com "CVE-2024-1234 matched" "RCE via deserialization"
 ```
 
 ### 确认漏洞后
 ```bash
-/usr/bin/python3 ~/.agent/scripts/agent-exec-monitor.py confirm nuclei example.com confirmed high
+/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py confirm nuclei example.com confirmed high
 ```
 
 ### 检查预算
 ```bash
-/usr/bin/python3 ~/.agent/scripts/agent-exec-monitor.py budget standard
+/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py budget standard
 ```
 
 ### 任务结束/上下文交接
 ```bash
-/usr/bin/python3 ~/.agent/scripts/agent-exec-monitor.py summary
+/usr/bin/python3 /root/.hermes/scripts/agent-exec-monitor.py summary
 ```
 
 ## 循环检测行为

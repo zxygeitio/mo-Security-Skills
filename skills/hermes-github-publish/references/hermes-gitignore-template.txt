@@ -1,0 +1,111 @@
+# =============================================================================
+# Hermes Workspace - Security & Privacy Exclusions
+# =============================================================================
+
+# === Embedded Git Repositories (submodules) ===
+hermes-agent
+skills/ai-development/hermes-agent-self-evolution/source/
+skills/ai-development/hermes-gbrain-bridge/source/
+skills/ai-development/hermes-web-ui/source/
+skills/ai-development/hermes-workspace/source/
+skills/misc/awesome-hermes-agent/source/
+
+# === Plugins State ===
+plugins/
+
+# === Git Internals ===
+checkpoints/
+.git/
+
+# === Credentials & API Keys (NEVER COMMIT) ===
+.env
+.env.*
+!.env.example
+.env.swp
+auth.json
+auth.lock
+
+# === Config with embedded secrets ===
+config.yaml
+config.yaml.bak.*
+!config.yaml.example
+
+# === Personal Memory (contains VPN creds, user data) ===
+memories/
+
+# === Session & History Data ===
+sessions/
+state.db
+state.db-shm
+state.db-wal
+.hermes_history
+hermes_history
+
+# === Runtime State ===
+gateway_state.json
+gateway.lock
+gateway.pid
+channel_directory.json
+processes.json
+
+# === Cron Jobs (runtime data) ===
+cron/
+
+# === Pastes (may contain sensitive data) ===
+pastes/
+
+# === Feishu State ===
+feishu_seen_message_ids.json
+
+# === Database Files ===
+kanban.db
+kanban.db.init.lock
+
+# === Cache Files ===
+cache/
+models_dev_cache.json
+provider_models_cache.json
+ollama_cloud_models_cache.json
+.skills_prompt_snapshot.json
+.usage.json
+.usage.json.lock
+.update_check
+
+# === Logs ===
+logs/
+interrupt_debug.log
+
+# === Traffic & Burp Data ===
+burp_mcp/
+
+# === Backups (may contain old secrets) ===
+backups/
+
+# === State Snapshots ===
+state-snapshots/
+
+# === Vuln Intel Data ===
+vuln-intel/
+
+# === Curator Internal State ===
+skills/.curator_backups/
+skills/.curator_state
+skills/.bundled_manifest
+skills/.archive/
+
+# === Python Cache ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === OS Files ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# === Temp & Debug ===
+*.log
+*.tmp
+*.temp
